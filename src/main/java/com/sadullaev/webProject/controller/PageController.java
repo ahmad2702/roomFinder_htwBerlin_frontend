@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class PageController {
 	
 	@RequestMapping("/")
-	String home() {
+	String index() {
 		return "home";
 	}
 	
@@ -17,7 +17,10 @@ public class PageController {
 		return "welcomepage";
 	}
 	
-	
+	@RequestMapping("/search")
+	String search() {
+		return "searchpage";
+	}
 	
 	
 }
