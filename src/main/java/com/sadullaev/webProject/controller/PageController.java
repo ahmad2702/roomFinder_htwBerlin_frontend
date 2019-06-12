@@ -8,9 +8,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class PageController {
 	
 	@RequestMapping("/")
-	@ResponseBody
 	String home() {
-		return "Greetings from Java Tutorial Network";
+		return "home";
 	}
 	
 	@RequestMapping("/welcome")
