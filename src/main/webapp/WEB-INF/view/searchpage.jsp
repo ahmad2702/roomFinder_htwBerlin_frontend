@@ -135,7 +135,7 @@
 							<c:forEach var="event" items="${listEvents}">
 									<tr>
 									  <td><fmt:formatDate value="${event.date}" type="date" pattern="dd.MM.yyyy"/></td>
-									  <td>${event.name}</td>
+									  <td><a target="_blank" rel="noopener noreferrer" href="https://lsf.htw-berlin.de/qisserver/rds?state=wsearchv&search=2&veranstaltung.veranstid=${event.lsf_id}">${event.name}</a></td>
 									  <td><fmt:formatDate value="${event.begin}" type="date" pattern="HH:mm"/></td>
 									  <td><fmt:formatDate value="${event.end}" type="date" pattern="HH:mm"/></td>
 									  <td>${event.room}</td>

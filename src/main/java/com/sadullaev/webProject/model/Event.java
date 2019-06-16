@@ -9,17 +9,17 @@ public class Event {
     private Timestamp begin;
     private Timestamp end;
     private String name;
-    private double lsfId;    
+    private double lsf_id;    
     private String room;
     private String lecturer;
 	
-    public Event(Date date, Timestamp begin, Timestamp end, String name, double lsfId, String room, String lecturer) {
+    public Event(Date date, Timestamp begin, Timestamp end, String name, double lsf_id, String room, String lecturer) {
 		super();
 		this.date = date;
 		this.begin = begin;
 		this.end = end;
 		this.name = name;
-		this.lsfId = lsfId;
+		this.lsf_id = lsf_id;
 		this.room = room;
 		this.lecturer = lecturer;
 	}
@@ -56,12 +56,12 @@ public class Event {
 		this.name = name;
 	}
 
-	public double getLsfId() {
-		return lsfId;
+	public double getLsf_id() {
+		return lsf_id;
 	}
 
-	public void setLsfId(double lsfId) {
-		this.lsfId = lsfId;
+	public void setLsf_id(double lsf_id) {
+		this.lsf_id = lsf_id;
 	}
 
 	public String getRoom() {
@@ -82,10 +82,9 @@ public class Event {
 
 	@Override
 	public String toString() {
-		return "Event [date=" + date + ", begin=" + begin + ", end=" + end + ", name=" + name + ", lsfId=" + lsfId
+		return "Event [date=" + date + ", begin=" + begin + ", end=" + end + ", name=" + name + ", lsf_id=" + lsf_id
 				+ ", room=" + room + ", lecturer=" + lecturer + "]";
 	}
-    
-    
+
 	
 }

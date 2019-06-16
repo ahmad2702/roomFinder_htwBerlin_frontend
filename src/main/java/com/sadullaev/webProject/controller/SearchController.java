@@ -1,5 +1,6 @@
 package com.sadullaev.webProject.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -39,7 +40,8 @@ public class SearchController {
 		String number = searchForm.getNumber();
 		
 		List<Event> result = eventFinderService.getEvents(title, date, lecturer, number);
-
+		//System.out.println(Arrays.toString(result.toArray()));
+		
 		model.addAttribute("listEvents", result); 
 
         return "searchpage";
