@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+    
 <!DOCTYPE html>
 <html>
 
@@ -60,69 +61,60 @@
 			<div class="col-lg-12 text-left">
 		  
 		        <h1 class="mt-5">SUCHMASCHINE</h1>
-		        <p class="lead">Bitte fülle die folgenden Felder aus:</p>
+		        <p class="lead">Bitte fÃ¼lle die folgenden Felder aus:</p>
 		         
 				
 				
-				<form name="eventFinder" action="" method="POST">
+				<form:form action="/search" method="POST" modelAttribute="eventSearchForm">
+					
+					<div class="input-group input-group-sm mb-3">
+					  <div class="input-group-prepend">
+						<label class="input-group-text" for="inputGroupSelect01">Option:</label>
+					  </div>
+					  <select class="custom-select" id="inputGroupSelect01">
+						<option value="1">Ich suche einen Modul</option>
+						<option value="2">Ich suche einen freien Raum</option>
+					  </select>
+					</div>
+					
 					<div class="input-group input-group-sm mb-3">
 						  <div class="input-group-prepend">
 							<span class="input-group-text" id="inputGroup-sizing-sm">Title (z.B. Mathematik): </span>
 						  </div>
-						  <input type="text" class="form-control form-control-sm" placeholder="(optional)" name="eventName">
+						  <form:input path="title" type="text" class="form-control form-control-sm" placeholder="(optional)" required="required" />
 					</div>
 					
 					<div class="input-group input-group-sm mb-3">
 						  <div class="input-group-prepend">
 							<span class="input-group-text" id="inputGroup-sizing-sm">Datum: </span>
 						  </div>
-						  <input type="date" class="form-control form-control-sm" >
+						  <form:input path="date" type="date" class="form-control form-control-sm" />
 					</div>
 					
 					
 					<div class="input-group input-group-sm mb-3">
-					  <div class="input-group-prepend">
-						<label class="input-group-text" for="inputGroupSelect01">Raumtyp:</label>
-					  </div>
-					  <select class="custom-select" id="inputGroupSelect01">
-						<option selected>Wähle aus...</option>
-						<option value="1">frei</option>
-						<option value="2">belegt</option>
-					  </select>
-					</div>
-					
-					
-					<div class="input-group">
 						  <div class="input-group-prepend">
-							<span class="input-group-text">Zeit: </span>
+							<span class="input-group-text" id="inputGroup-sizing-sm">Dozent: </span>
 						  </div>
-						  <input type="time" aria-label="First name" class="form-control">
+						  <form:input path="lecturer" type="text" class="form-control form-control-sm" placeholder="(optional)" />
 					</div>
-					<br>
-					<div class="input-group input-group-sm mb-3">
-						  <div class="input-group-prepend">
-							<span class="input-group-text" id="inputGroup-sizing-sm">Dauer (hh:mm): </span>
-						  </div>
-						  <input type="time" class="form-control form-control-sm">
-					</div>
+
 					
 					<div class="input-group input-group-sm mb-3">
 						  <div class="input-group-prepend">
 							<span class="input-group-text" id="inputGroup-sizing-sm">Anzahl (1-100): </span>
 						  </div>
-						  <input type="number" class="form-control form-control-sm" placeholder="(1-100)" name="eventNumber" required>
+						  <form:input path="number" type="number" class="form-control form-control-sm" min="1" max="100" placeholder="(1-100)" required="required" />
 					</div>
 					
 					<input type="submit" class="btn btn-outline-success" value="SUCHEN">
 					
-				</form>
+				</form:form>
 	
 			</div>
 			
 			
-			
-			
-			
+
 			
 			
 			

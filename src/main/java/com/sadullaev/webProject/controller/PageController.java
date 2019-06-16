@@ -17,10 +17,6 @@ public class PageController {
 		return "welcomepage";
 	}
 	
-	@RequestMapping("/search")
-	String search() {
-		return "searchpage";
-	}
 	
 	
 }

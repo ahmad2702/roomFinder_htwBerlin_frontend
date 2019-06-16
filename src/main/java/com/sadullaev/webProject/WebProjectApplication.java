@@ -5,12 +5,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
+import com.sadullaev.webProject.propertiesLoader.BackendConnection;
+
 @SpringBootApplication
 public class WebProjectApplication extends SpringBootServletInitializer {
 	
 	
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		new BackendConnection().load();
 		return application.sources(WebProjectApplication.class);
 	}
 
