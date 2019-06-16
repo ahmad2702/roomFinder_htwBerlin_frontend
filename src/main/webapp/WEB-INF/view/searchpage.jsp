@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
 <!DOCTYPE html>
 <html>
@@ -114,16 +116,47 @@
 			</div>
 			
 			
+			<div class="col-lg-12 text-center">
+				
+				<c:if test="${not empty listEvents}">
+				
+					<table class="table table-bordered table-bottom table-top">
+						<thead>
+							<tr>
+							  <th scope="col">Date</th>
+							  <th scope="col">Titel</th>
+							  <th scope="col">Von</th>
+							  <th scope="col">Bis</th>
+							  <th scope="col">Raum</th>
+							  <th scope="col">Dozent</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="event" items="${listEvents}">
+									<tr>
+									  <td><fmt:formatDate value="${event.date}" type="date" pattern="dd.MM.yyyy"/></td>
+									  <td>${event.name}</td>
+									  <td><fmt:formatDate value="${event.begin}" type="date" pattern="HH:mm"/></td>
+									  <td><fmt:formatDate value="${event.end}" type="date" pattern="HH:mm"/></td>
+									  <td>${event.room}</td>
+									  <td>${event.lecturer}</td>
+									</tr>
+					    	</c:forEach>
+						</tbody> 
+					</table>
+				  	
+			
+			
+			
+				</c:if>
+			
+			
+	  		</div>
+			
+			
+			
+			
 
-			
-			
-			
-			
-			
-			
-			
-			
-			
 		</div>
 	</div>
 	
