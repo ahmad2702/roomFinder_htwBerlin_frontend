@@ -146,10 +146,15 @@
 					</table>
 				  	
 			
-			
+				
 			
 				</c:if>
-			
+				
+				<c:if test="${empty listEvents}">
+					
+					Nichts gefunden!
+				
+				</c:if>
 			
 	  		</div>
 			

@@ -1,6 +1,5 @@
 package com.sadullaev.webProject.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -35,23 +34,14 @@ public class SearchController {
       ModelMap model) {
         
 		String title = searchForm.getTitle();
-		System.out.println(title);
-		
-		String date = searchForm.getDate();
-		System.out.println(date);
-		
-		String lecturer = searchForm.getLecturer();
-		System.out.println(lecturer);
-		
+		String date = searchForm.getDate();		
+		String lecturer = searchForm.getLecturer();		
 		String number = searchForm.getNumber();
-		System.out.println(number);
 		
 		List<Event> result = eventFinderService.getEvents(title, date, lecturer, number);
 
 		model.addAttribute("listEvents", result); 
-		
-		System.out.println("------------------");
-		
+
         return "searchpage";
     }
 	

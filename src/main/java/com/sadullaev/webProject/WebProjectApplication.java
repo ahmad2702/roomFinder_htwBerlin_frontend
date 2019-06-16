@@ -13,12 +13,12 @@ public class WebProjectApplication extends SpringBootServletInitializer {
 	
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		new BackendConnection().load();
 		return application.sources(WebProjectApplication.class);
 	}
 
 	
 	public static void main(String[] args) {
+		new BackendConnection().load();
 		SpringApplication.run(WebProjectApplication.class, args);
 	}
 

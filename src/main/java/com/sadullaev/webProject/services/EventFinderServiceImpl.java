@@ -6,9 +6,6 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,14 +22,12 @@ public class EventFinderServiceImpl implements EventFinderService{
 				+ BackendConnection.getHost()
 				+ ":"
 				+ BackendConnection.getPort();
-		
 		return url;
 	}
 	
 	@Override
 	public List<Event> getEvents(String title, String date, String lecturer, String number){
-		/**
-		String url = getUrl() + "/events/" + number;
+		String url = getUrl() + "/events/finder";
 		
 		String json = "";
 		
@@ -40,6 +35,10 @@ public class EventFinderServiceImpl implements EventFinderService{
 		try {
 			URL urlObj = new URL(url);
 		    conn = urlObj.openConnection();
+		    conn.setRequestProperty("title", title);
+		    conn.setRequestProperty("date", date);
+		    conn.setRequestProperty("lecturer", lecturer);
+		    conn.setRequestProperty("number", number);
 		}catch(IOException e) {
 			System.out.println("URL kann nicht geoffnet werden.");
 		}
@@ -52,27 +51,15 @@ public class EventFinderServiceImpl implements EventFinderService{
 			System.out.println("JSON kann nicht abgelesen werden.");
 		} 
 		
-		System.out.println(json);
+		//System.out.println(json);
 		
 	    Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
 		List<Event> events = gson.fromJson(json, new TypeToken<List<Event>>(){}.getType());
 		//System.out.println("Size: " + events.size());
 		return events;
-		*/
-		return test();
 	}
 	
-	private List<Event> test(){
-		List<Event> result = new ArrayList<>();
-		
-		Event event1 = new Event(new Date(1), new Timestamp(44), new Timestamp(49), "Test1", 1, "Room 1", "L 1");
-		Event event2 = new Event(new Date(2), new Timestamp(44), new Timestamp(49), "Test2", 2, "Room 2", "L 2");
-		
-		result.add(event1);
-		result.add(event2);
-		
-		return result;
-	}
+
 
 	
 }
