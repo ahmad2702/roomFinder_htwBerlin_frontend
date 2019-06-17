@@ -81,9 +81,9 @@
 					
 					<div class="input-group input-group-sm mb-3">
 						  <div class="input-group-prepend">
-							<span class="input-group-text" id="inputGroup-sizing-sm">Title (z.B. Mathematik): </span>
+							<span class="input-group-text" id="inputGroup-sizing-sm">Titel* : </span>
 						  </div>
-						  <form:input path="title" type="text" class="form-control form-control-sm" placeholder="(optional)" required="required" />
+						  <form:input path="title" type="text" class="form-control form-control-sm" placeholder="z.B. Mathe oder Mathematik" required="required" />
 					</div>
 					
 					<div class="input-group input-group-sm mb-3">
@@ -104,10 +104,15 @@
 					
 					<div class="input-group input-group-sm mb-3">
 						  <div class="input-group-prepend">
-							<span class="input-group-text" id="inputGroup-sizing-sm">Anzahl (1-100): </span>
+							<span class="input-group-text" id="inputGroup-sizing-sm">Ergebnisanzahl* : </span>
 						  </div>
-						  <form:input path="number" type="number" class="form-control form-control-sm" min="1" max="100" placeholder="(1-100)" required="required" />
+						  <form:input path="number" type="number" class="form-control form-control-sm" min="1" max="100" placeholder="von 1 bis 100" required="required" />
 					</div>
+					
+					<span class="small">
+						*Pflichtfelder
+					</span> 
+					<br>
 					
 					<input type="submit" class="btn btn-outline-success" value="SUCHEN">
 					
@@ -152,7 +157,7 @@
 				
 				<c:if test="${empty listEvents}">
 					
-					Nichts gefunden!
+					Noch nichts gefunden! 
 				
 				</c:if>
 			
