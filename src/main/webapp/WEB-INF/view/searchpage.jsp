@@ -22,6 +22,9 @@
   <link href="/resources/css/navbar_custom.css" rel="stylesheet">
   <link href="/resources/css/position_custom.css" rel="stylesheet">
 
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/resources/images/favicon.ico" type="image/x-icon">
+
 </head>
 
 <body>
@@ -37,13 +40,13 @@
 	        <ul class="navbar-nav ml-auto">
 	          
 	          <li class="nav-item active">
-	            <a class="nav-link" href="/search">Finder</a>
+	            <a class="nav-link" href="/search">Search</a>
 	          </li>
 	          <li class="nav-item">
-	            <a class="nav-link" href="#">Meine Reservierungen</a>
+	            <a class="nav-link" href="/myList">Meine Liste</a>
 	          </li>
 	          <li class="nav-item">
-	            <a class="nav-link" href="#">Profile</a>
+	            <a class="nav-link" href="/account">Mein Profil</a>
 	          </li>
 	          <li class="nav-item">
 	            <a class="nav-link" href="#">LOGOUT</a>

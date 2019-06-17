@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -18,7 +19,7 @@
   <!-- Custom core CSS -->
   <link href="/resources/css/navbar_custom.css" rel="stylesheet">
   <link href="/resources/css/position_custom.css" rel="stylesheet">
-
+  
   <!-- Favicon -->
   <link rel="shortcut icon" href="/resources/images/favicon.ico" type="image/x-icon">
 
@@ -39,7 +40,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/search">Search</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="/myList">Meine Liste</a>
           </li>
           <li class="nav-item">
@@ -58,17 +59,53 @@
 	
 	
 	<!-- Page Content -->
-  <div class="container">
-    <div class="row">
-      	<div class="col-lg-12 text-left">
-	  
-	        <h1 class="mt-5">STARTPAGE</h1>
-	        <br>
-	        <p class="lead">Hello, User!</p>
-
-    	</div>
-  	</div>
-  </div>
+	<div class="container">
+	    <div class="row">
+			
+			<div class="col-lg-12 text-left">
+					<div class="col-lg-12 text-center">
+						
+						<h3 class="mt-5">
+							Liste
+						</h3>
+						
+						<table class="table table-bordered table-bottom table-top table-responsive-sm">
+							<thead>
+								<tr>
+								  <th scope="col">Datum</th>
+								  <th scope="col">Raum</th>
+								  <th scope="col">Von</th>
+								  <th scope="col">Bis</th>
+								  <th scope="col">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+	
+										<tr>
+										  <td>15.05.2019</td>
+										  <td>WH C 613</td>
+										  <td>11:00</td>
+										  <td>12:00</td>
+										  <td><button type="button" class="btn btn-secondary btn-sm">remove</button></td>
+										</tr>
+	
+							</tbody> 
+						</table>
+					</div>	
+		  	</div>	
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+	    </div>
+	</div>
 	
 	
 	

@@ -2,7 +2,6 @@ package com.sadullaev.webProject.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class PageController {
@@ -12,11 +11,18 @@ public class PageController {
 		return "home";
 	}
 	
-	@RequestMapping("/welcome")
-	String welcome() {
-		return "welcomepage";
+	
+	@RequestMapping("/account")
+	String account() {
+		
+		return "profile";
 	}
 	
 	
+	@RequestMapping("/myList")
+	String liste() {
+		
+		return "my_list";
+	}
 	
 }

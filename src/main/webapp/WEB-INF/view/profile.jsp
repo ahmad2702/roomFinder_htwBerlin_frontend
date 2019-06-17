@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -18,7 +19,7 @@
   <!-- Custom core CSS -->
   <link href="/resources/css/navbar_custom.css" rel="stylesheet">
   <link href="/resources/css/position_custom.css" rel="stylesheet">
-
+  
   <!-- Favicon -->
   <link rel="shortcut icon" href="/resources/images/favicon.ico" type="image/x-icon">
 
@@ -42,7 +43,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/myList">Meine Liste</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="/account">Mein Profil</a>
           </li>
           <li class="nav-item">
@@ -58,17 +59,49 @@
 	
 	
 	<!-- Page Content -->
-  <div class="container">
-    <div class="row">
-      	<div class="col-lg-12 text-left">
-	  
-	        <h1 class="mt-5">STARTPAGE</h1>
-	        <br>
-	        <p class="lead">Hello, User!</p>
-
-    	</div>
-  	</div>
-  </div>
+	<div class="container">
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="well well-sm">
+	                <div class="row">
+	
+	                    <div class="col-lg-12 col-md-8">
+							<br><br><br>
+	                        
+							<h3 class="text-center">
+	                            Max Mustermann
+							</h3>
+	                        <br>
+	
+							Wohnort:
+							<cite title="Berlin, Deutschland">
+								Berlin, Deutschland<br>
+								<i class="glyphicon glyphicon-map-marker"></i>
+							</cite>
+							<br>
+							
+	                        <p>
+	                            <i class="glyphicon glyphicon-envelope"></i>
+								Email: user@htw-berlin.de
+	                            <br><br>
+	                            
+								<i class="glyphicon glyphicon-globe"></i>
+								Website: 
+								<a href="http://www.jquery2dotnet.com">
+									www.jquery2dotnet.com
+								</a>
+	                            <br><br>
+	                            
+								<i class="glyphicon glyphicon-gift"></i>
+								Geburtstag: 01.05.1990
+								<br><br>
+							</p>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
 	
 	
 	
