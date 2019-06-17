@@ -13,26 +13,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sadullaev.webProject.form.EventSearchForm;
+import com.sadullaev.webProject.form.FreeRoomSearchForm;
 import com.sadullaev.webProject.model.Event;
 import com.sadullaev.webProject.services.EventFinderServiceImpl;
 
 @Controller
-public class SearchController {
+public class EventSearchController {
 	
 	EventFinderServiceImpl eventFinderService = new EventFinderServiceImpl();
 	
-	@RequestMapping(value="/search", method=RequestMethod.GET)
+	@RequestMapping(value="/search/event", method=RequestMethod.GET)
 	String search(Model model) {
 
 		model.addAttribute("eventSearchForm", new EventSearchForm()); 
+		model.addAttribute("freeRoomSearchForm", new FreeRoomSearchForm()); 
 		
-		return "searchpage";
+		return "eventSearchPage";
 	}
 	
 	
-	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	@RequestMapping(value = "/search/event", method = RequestMethod.POST)
     public String submit(@Valid @ModelAttribute("eventSearchForm") EventSearchForm searchForm, 
-      ModelMap model) {
+    		@Valid @ModelAttribute("freeRoomSearchForm") FreeRoomSearchForm freeRoomSearchForm,
+    		ModelMap model) {
         
 		String title = searchForm.getTitle();
 		String date = searchForm.getDate();		
@@ -44,7 +47,7 @@ public class SearchController {
 		
 		model.addAttribute("listEvents", result); 
 
-        return "searchpage";
+        return "eventSearchPage";
     }
 	
 }

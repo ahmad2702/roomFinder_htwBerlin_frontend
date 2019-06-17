@@ -11,6 +11,16 @@ public class PageController {
 		return "home";
 	}
 	
+	@RequestMapping("/search")
+	String search() {
+		return "searchpage";
+	}
+	
+	@RequestMapping("/myList")
+	String liste() {
+		
+		return "my_list";
+	}
 	
 	@RequestMapping("/account")
 	String account() {
@@ -18,11 +28,5 @@ public class PageController {
 		return "profile";
 	}
 	
-	
-	@RequestMapping("/myList")
-	String liste() {
-		
-		return "my_list";
-	}
 	
 }

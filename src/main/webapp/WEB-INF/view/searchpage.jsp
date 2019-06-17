@@ -2,7 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-    
+
 <!DOCTYPE html>
 <html>
 
@@ -24,7 +24,7 @@
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="/resources/images/favicon.ico" type="image/x-icon">
-
+  
 </head>
 
 <body>
@@ -63,112 +63,34 @@
 	<!-- Page Content -->
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-12 text-left">
-		  
-		        <h1 class="mt-5">SUCHMASCHINE</h1>
-		        <p class="lead">Bitte fülle die folgenden Felder aus:</p>
-		         
-				
-				
-				<form:form action="/search" method="POST" modelAttribute="eventSearchForm">
-					
-					<div class="input-group input-group-sm mb-3">
-					  <div class="input-group-prepend">
-						<label class="input-group-text" for="inputGroupSelect01">Option:</label>
-					  </div>
-					  <select class="custom-select" id="inputGroupSelect01">
-						<option value="1">Ich suche einen Modul</option>
-						<option value="2">Ich suche einen freien Raum</option>
-					  </select>
-					</div>
-					
-					<div class="input-group input-group-sm mb-3">
-						  <div class="input-group-prepend">
-							<span class="input-group-text" id="inputGroup-sizing-sm">Titel* : </span>
-						  </div>
-						  <form:input path="title" type="text" class="form-control form-control-sm" placeholder="z.B. Mathe oder Mathematik" required="required" />
-					</div>
-					
-					<div class="input-group input-group-sm mb-3">
-						  <div class="input-group-prepend">
-							<span class="input-group-text" id="inputGroup-sizing-sm">Datum: </span>
-						  </div>
-						  <form:input path="date" type="date" class="form-control form-control-sm" />
-					</div>
-					
-					
-					<div class="input-group input-group-sm mb-3">
-						  <div class="input-group-prepend">
-							<span class="input-group-text" id="inputGroup-sizing-sm">Dozent: </span>
-						  </div>
-						  <form:input path="lecturer" type="text" class="form-control form-control-sm" placeholder="(optional)" />
-					</div>
-
-					
-					<div class="input-group input-group-sm mb-3">
-						  <div class="input-group-prepend">
-							<span class="input-group-text" id="inputGroup-sizing-sm">Ergebnisanzahl* : </span>
-						  </div>
-						  <form:input path="number" type="number" class="form-control form-control-sm" min="1" max="100" placeholder="von 1 bis 100" required="required" />
-					</div>
-					
-					<span class="small">
-						*Pflichtfelder
-					</span> 
-					<br>
-					
-					<input type="submit" class="btn btn-outline-success" value="SUCHEN">
-					
-				</form:form>
-	
-			</div>
-			
 			
 			<div class="col-lg-12 text-center">
 				
-				<c:if test="${not empty listEvents}">
-				
-					<table class="table table-bordered table-bottom table-top">
-						<thead>
-							<tr>
-							  <th scope="col">Date</th>
-							  <th scope="col">Titel</th>
-							  <th scope="col">Von</th>
-							  <th scope="col">Bis</th>
-							  <th scope="col">Raum</th>
-							  <th scope="col">Dozent</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="event" items="${listEvents}">
-									<tr>
-									  <td><fmt:formatDate value="${event.date}" type="date" pattern="dd.MM.yyyy"/></td>
-									  <td><a target="_blank" rel="noopener noreferrer" href="https://lsf.htw-berlin.de/qisserver/rds?state=wsearchv&search=2&veranstaltung.veranstid=${event.lsf_id}">${event.name}</a></td>
-									  <td><fmt:formatDate value="${event.begin}" type="date" pattern="HH:mm"/></td>
-									  <td><fmt:formatDate value="${event.end}" type="date" pattern="HH:mm"/></td>
-									  <td>${event.room}</td>
-									  <td>${event.lecturer}</td>
-									</tr>
-					    	</c:forEach>
-						</tbody> 
-					</table>
-				  	
-			
-				
-			
-				</c:if>
-				
-				<c:if test="${empty listEvents}">
-					
-					Noch nichts gefunden! 
-				
-				</c:if>
-			
-	  		</div>
-			
-			
-			
-			
+
+		            <a href="/search/event" class="btn btn-outline-success" role="button" aria-pressed="true" style="
+		            margin:100px auto;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					height: 100px;
+					overflow: auto;">
+		            	Ich suche einen Modul
+		            </a>
+
+
+		            <a href="/search/freeRoom" class="btn btn-outline-danger" role="button" aria-pressed="true" style="
+		            margin:100px auto;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					height: 100px;
+					overflow: auto;">
+		            	Ich suche einen freien Raum
+		            </a>
+
+
+
+			</div>
 
 		</div>
 	</div>
@@ -192,8 +114,7 @@
 	  <!-- Bootstrap core JavaScript -->
 	  <script src="/resources/jquery/jquery.slim.min.js"></script>
 	  <script src="/resources/bootstrap/js/bootstrap.bundle.min.js"></script>
-	
-	
+
 	
 </body>
 </html>
