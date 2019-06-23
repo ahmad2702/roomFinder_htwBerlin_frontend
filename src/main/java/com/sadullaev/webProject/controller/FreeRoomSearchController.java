@@ -30,6 +30,9 @@ public class FreeRoomSearchController {
 		String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		model.addAttribute("currentDate", currentDate); 
 		
+		boolean startSearch = true;
+		model.addAttribute("startSearch", startSearch); 
+		
 		return "freeRoomSearchPage";
 	}
 	
@@ -45,6 +48,9 @@ public class FreeRoomSearchController {
 		List<Room> rooms = freeRoomFinderService.getRooms(date, roomName, time, number);
 		
 		model.addAttribute("rooms", rooms); 
+		
+		boolean startSearch = false;
+		model.addAttribute("startSearch", startSearch); 
 
         return "freeRoomSearchPage";
     }

@@ -98,7 +98,7 @@
 						  <div class="input-group-prepend">
 							<span class="input-group-text" id="inputGroup-sizing-sm">Dauer (min)* : </span>
 						  </div>
-						  <form:input path="time" type="number" class="form-control form-control-sm" min="15" max="360" placeholder="von 15 bis 360" required="required" />
+						  <form:input path="time" type="number" class="form-control form-control-sm" min="15" max="900" placeholder="von 15 bis 900" required="required" />
 					</div>
 					
 					<div class="input-group input-group-sm mb-3">
@@ -147,9 +147,15 @@
 				
 					</c:if>
 					
-					<c:if test="${empty rooms}">
-						Noch nichts gefunden! 
+					<c:if test="${startSearch==false}">
+						
+						<c:if test="${empty rooms}">
+							Nichts gefunden! 
+						</c:if>
+						
 					</c:if>
+					
+					
 					
 				</div>
 				

@@ -150,8 +150,12 @@
 						
 					</c:if>
 					
-					<c:if test="${empty listEvents}">
-						Noch nichts gefunden! 
+					<c:if test="${startSearch==false}">
+						
+						<c:if test="${empty listEvents}">
+							Nichts gefunden! 
+						</c:if>
+						
 					</c:if>
 					
 				</div>

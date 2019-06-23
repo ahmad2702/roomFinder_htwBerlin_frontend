@@ -27,6 +27,9 @@ public class EventSearchController {
 
 		model.addAttribute("eventSearchForm", new EventSearchForm()); 
 		
+		boolean startSearch = true;
+		model.addAttribute("startSearch", startSearch); 
+		
 		return "eventSearchPage";
 	}
 	
@@ -45,6 +48,9 @@ public class EventSearchController {
 		//System.out.println(Arrays.toString(result.toArray()));
 		
 		model.addAttribute("listEvents", result); 
+		
+		boolean startSearch = false;
+		model.addAttribute("startSearch", startSearch); 
 
         return "eventSearchPage";
     }
