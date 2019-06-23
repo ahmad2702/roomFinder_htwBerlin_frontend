@@ -1,5 +1,9 @@
 package com.sadullaev.webProject.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -10,14 +14,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sadullaev.webProject.form.FreeRoomSearchForm;
+import com.sadullaev.webProject.model.Room;
+import com.sadullaev.webProject.services.FreeRoomFinderServiceImpl;
 
 @Controller
 public class FreeRoomSearchController {
+	
+	FreeRoomFinderServiceImpl freeRoomFinderService = new FreeRoomFinderServiceImpl();
 	
 	@RequestMapping(value="/search/freeRoom", method=RequestMethod.GET)
 	String search(Model model) {
 
 		model.addAttribute("freeRoomSearchForm", new FreeRoomSearchForm()); 
+		
+		String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		model.addAttribute("currentDate", currentDate); 
 		
 		return "freeRoomSearchPage";
 	}
@@ -27,11 +38,13 @@ public class FreeRoomSearchController {
     		ModelMap model) {
         
 		String date = freeRoomSearchForm.getDate();
-		String room = freeRoomSearchForm.getRoom();		
+		String roomName = freeRoomSearchForm.getRoom();		
 		String time = freeRoomSearchForm.getTime();		
 		String number = freeRoomSearchForm.getNumber();
 		
+		List<Room> rooms = freeRoomFinderService.getRooms(date, roomName, time, number);
 		
+		model.addAttribute("rooms", rooms); 
 
         return "freeRoomSearchPage";
     }

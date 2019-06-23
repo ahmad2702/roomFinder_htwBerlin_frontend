@@ -26,7 +26,6 @@ public class EventSearchController {
 	String search(Model model) {
 
 		model.addAttribute("eventSearchForm", new EventSearchForm()); 
-		model.addAttribute("freeRoomSearchForm", new FreeRoomSearchForm()); 
 		
 		return "eventSearchPage";
 	}

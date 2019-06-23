@@ -11,11 +11,12 @@ import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.sadullaev.webProject.model.Event;
-import com.sadullaev.webProject.propertiesLoader.BackendConnection;
 import com.google.gson.reflect.TypeToken;
+import com.sadullaev.webProject.model.Event;
+import com.sadullaev.webProject.model.Room;
+import com.sadullaev.webProject.propertiesLoader.BackendConnection;
 
-public class EventFinderServiceImpl implements EventFinderServiceDAO{
+public class FreeRoomFinderServiceImpl implements FreeRoomFinderServiceDAO{
 
 	private static String getUrl() {
 		String url = "http://"
@@ -26,8 +27,8 @@ public class EventFinderServiceImpl implements EventFinderServiceDAO{
 	}
 	
 	@Override
-	public List<Event> getEvents(String title, String date, String lecturer, String number){
-		String url = getUrl() + "/events/finder";
+	public List<Room> getRooms(String date, String roomName, String time, String number) {
+		String url = getUrl() + "/rooms/free";
 		
 		String json = "";
 		
@@ -35,9 +36,9 @@ public class EventFinderServiceImpl implements EventFinderServiceDAO{
 		try {
 			URL urlObj = new URL(url);
 		    conn = urlObj.openConnection();
-		    conn.setRequestProperty("title", title);
 		    conn.setRequestProperty("date", date);
-		    conn.setRequestProperty("lecturer", lecturer);
+		    conn.setRequestProperty("room", roomName);
+		    conn.setRequestProperty("time", time);
 		    conn.setRequestProperty("number", number);
 		}catch(IOException e) {
 			System.out.println("URL kann nicht geoffnet werden.");
@@ -54,12 +55,9 @@ public class EventFinderServiceImpl implements EventFinderServiceDAO{
 		//System.out.println(json);
 		
 	    Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
-		List<Event> events = gson.fromJson(json, new TypeToken<List<Event>>(){}.getType());
-		//System.out.println("Size: " + events.size());
-		return events;
+		List<Room> rooms = gson.fromJson(json, new TypeToken<List<Room>>(){}.getType());
+		//System.out.println("Size: " + rooms.size());
+		return rooms;
 	}
-	
 
-
-	
 }

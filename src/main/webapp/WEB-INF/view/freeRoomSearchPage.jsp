@@ -81,9 +81,9 @@
 					
 					<div class="input-group input-group-sm mb-3">
 						  <div class="input-group-prepend">
-							<span class="input-group-text" id="inputGroup-sizing-sm">Datum: </span>
+							<span class="input-group-text" id="inputGroup-sizing-sm">Datum* : </span>
 						  </div>
-						  <form:input path="date" type="date" class="form-control form-control-sm" />
+						  <form:input path="date" type="date" class="form-control form-control-sm" value="${currentDate}" required="required"/>
 					</div>
 					
 					
@@ -120,29 +120,37 @@
 				
 				<div class="col-lg-12 text-center">
 				
+					<c:if test="${not empty rooms}">
+					
+						<table class="table table-bordered table-bottom table-top table-responsive-sm">
+							<thead>
+								<tr>
+								  <th scope="col">Datum</th>
+								  <th scope="col">Raum</th>
+								  <th scope="col">Von</th>
+								  <th scope="col">Bis</th>
+								  <th scope="col">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="room" items="${rooms}">
+										<tr>
+										  <td><fmt:formatDate value="${room.date}" type="date" pattern="dd.MM.yyyy"/></td>
+										  <td>${room.roomName}</td>
+										  <td><fmt:formatDate value="${room.beginTime}" type="date" pattern="HH:mm"/></td>
+										  <td><fmt:formatDate value="${room.endTime}" type="date" pattern="HH:mm"/></td>
+										  <td><button type="button" class="btn btn-secondary btn-sm">speichern</button></td>
+										</tr>
+								</c:forEach>
+							</tbody> 
+						</table>
 				
-					<table class="table table-bordered table-bottom table-top table-responsive-sm">
-						<thead>
-							<tr>
-							  <th scope="col">Datum</th>
-							  <th scope="col">Raum</th>
-							  <th scope="col">Von</th>
-							  <th scope="col">Bis</th>
-							  <th scope="col">Action</th>
-							</tr>
-						</thead>
-						<tbody>
-
-									<tr>
-									  <td>15.05.2019</td>
-									  <td>WH C 613</td>
-									  <td>11:00</td>
-									  <td>12:00</td>
-									  <td><button type="button" class="btn btn-secondary btn-sm">speichern</button></td>
-									</tr>
-
-						</tbody> 
-					</table>
+					</c:if>
+					
+					<c:if test="${empty rooms}">
+						Noch nichts gefunden! 
+					</c:if>
+					
 				</div>
 				
 	  		</div>	
