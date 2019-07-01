@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 
@@ -46,7 +48,7 @@
             <a class="nav-link" href="/account">Mein Profil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">LOGOUT</a>
+            <a class="nav-link" href="/logout">LOGOUT</a>
           </li>
           
         </ul>
@@ -64,7 +66,7 @@
 	  
 	        <h1 class="mt-5">STARTPAGE</h1>
 	        <br>
-	        <p class="lead">Hello, User!</p>
+	        <p class="lead">Hello, Besucher !</p>
 
     	</div>
   	</div>
