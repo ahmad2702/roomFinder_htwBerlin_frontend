@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 
@@ -38,18 +39,28 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           
-          <li class="nav-item">
-            <a class="nav-link" href="/search">Search</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/myList">Meine Liste</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/account">Mein Profil</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/logout">LOGOUT</a>
-          </li>
+          	<security:authorize access="isAuthenticated()">
+		    	
+		    	<li class="nav-item">
+		            <a class="nav-link" href="/search">Search</a>
+		        </li>
+		        <li class="nav-item">
+		            <a class="nav-link" href="/myList">Meine Liste</a>
+		        </li>
+		        <li class="nav-item">
+		            <a class="nav-link" href="/account">Mein Profil</a>
+		        </li>
+		        <li class="nav-item">
+		            <a class="nav-link" href="/logout">LOGOUT</a>
+		        </li>
+		    	
+			</security:authorize>
+			
+			<security:authorize access="!isAuthenticated()">
+          		<li class="nav-item active">
+		            <a class="nav-link" href="/login">Anmelden</a>
+		        </li>
+          	</security:authorize>
           
         </ul>
       </div>
@@ -66,7 +77,7 @@
 	  
 	        <h1 class="mt-5">STARTPAGE</h1>
 	        <br>
-	        <p class="lead">Hello, Besucher !</p>
+	        <p class="lead">Da kommt die Beschreibung ... </p>
 
     	</div>
   	</div>

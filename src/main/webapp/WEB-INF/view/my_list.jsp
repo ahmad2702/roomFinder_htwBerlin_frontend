@@ -47,7 +47,7 @@
             <a class="nav-link" href="/account">Mein Profil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">LOGOUT</a>
+            <a class="nav-link" href="/logout">LOGOUT</a>
           </li>
           
         </ul>

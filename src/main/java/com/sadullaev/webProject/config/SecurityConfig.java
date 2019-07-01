@@ -9,9 +9,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 
-import com.sadullaev.webProject.model.UserRoleEnum;
 import com.sadullaev.webProject.services.UserDetailsServiceImpl;
 
 @Configuration
@@ -40,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // указываем правила запросов
                 // по которым будет определятся доступ к ресурсам и остальным данным
                 .authorizeRequests()
-                .antMatchers("/", "/pages/**").permitAll()
+                .antMatchers("/", "/resources/**").permitAll()
                 .anyRequest().authenticated()
                 .and();
 
