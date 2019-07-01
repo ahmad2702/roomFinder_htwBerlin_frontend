@@ -21,9 +21,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private UserServiceDAO userService;
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         // с помощью нашего сервиса UserService получаем User
-        User user = userService.getUser("colibri");
+        User user = userService.getUser(login);
         // указываем роли для этого пользователя
         Set<GrantedAuthority> roles = new HashSet();
         roles.add(new SimpleGrantedAuthority(UserRoleEnum.USER.name()));
