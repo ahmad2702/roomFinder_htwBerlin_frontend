@@ -21,12 +21,7 @@ public class PageController {
 		
 		return "my_list";
 	}
-	
-	@RequestMapping("/account")
-	String account() {
-		
-		return "profile";
-	}
+
 	
 	
 }

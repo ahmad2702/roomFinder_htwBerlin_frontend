@@ -1,18 +1,12 @@
 package com.sadullaev.webProject.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.sadullaev.webProject.model.User;
-import com.sadullaev.webProject.model.UserRoleEnum;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Service("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -25,15 +19,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         User user = usersRepository.findByUsername(username);
 
-        Set<GrantedAuthority> roles = new HashSet();
-        roles.add(new SimpleGrantedAuthority(UserRoleEnum.USER.name()));
+        //Set<GrantedAuthority> roles = new HashSet();
+        //roles.add(new SimpleGrantedAuthority(UserRoleEnum.USER.name()));
 
-        UserDetails userDetails =
-                new org.springframework.security.core.userdetails.User(user.getUsername(), 
-                                                                       user.getPassword(), 
-                                                                       roles);
-
-        return userDetails;
+        //UserDetails userDetails =
+        //        new org.springframework.security.core.userdetails.User(user.getUsername(), 
+        //                                                               user.getPassword(), 
+       //                                                                roles);
+        
+        
+        return user;
     }
 
 }

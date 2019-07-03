@@ -71,31 +71,18 @@
 							<br><br><br>
 	                        
 							<h3 class="text-center">
-	                            <sec:authentication property="principal.username" />
+	                            ${user.firstname} ${user.lastname}
 							</h3>
 	                        <br>
-	
-							Wohnort:
-							<cite title="Berlin, Deutschland">
-								Berlin, Deutschland<br>
-								<i class="glyphicon glyphicon-map-marker"></i>
-							</cite>
-							<br>
+
 							
 	                        <p>
 	                            <i class="glyphicon glyphicon-envelope"></i>
-								Email: user@htw-berlin.de
-	                            <br><br>
-	                            
-								<i class="glyphicon glyphicon-globe"></i>
-								Website: 
-								<a href="http://www.jquery2dotnet.com">
-									www.jquery2dotnet.com
-								</a>
-	                            <br><br>
+								Email: ${user.username}@htw-berlin.de
+								<br><br>
 	                            
 								<i class="glyphicon glyphicon-gift"></i>
-								Geburtstag: 01.05.1990
+								Geburtstag: n/a
 								<br><br>
 							</p>
 	                    </div>
