@@ -6,8 +6,11 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javax.rmi.CORBA.Tie;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -59,5 +62,17 @@ public class FreeRoomFinderServiceImpl implements FreeRoomFinderServiceDAO{
 		//System.out.println("Size: " + rooms.size());
 		return rooms;
 	}
+	
+	private static void filterAndOptimizeRooms(List<Room> rooms, Timestamp startTime, int dauer) {
+		
+		
+		
+		rooms.stream().filter(room -> startTime.getTime() > room.getBeginTime().getTime() && startTime.getTime()+dauer < room.getBeginTime().getTime());
+		
+		
+		
+		
+	}
+	
 
 }
