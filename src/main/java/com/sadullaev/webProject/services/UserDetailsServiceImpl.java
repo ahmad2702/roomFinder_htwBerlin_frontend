@@ -14,25 +14,22 @@ import com.sadullaev.webProject.model.UserRoleEnum;
 import java.util.HashSet;
 import java.util.Set;
 
-@Service
+@Service("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private UserServiceDAO userService;
+    private UsersRepository usersRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        // с помощью нашего сервиса UserService получаем User
-        User user = userService.getUser(login);
-        // указываем роли для этого пользователя
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        User user = usersRepository.findByUsername(username);
+
         Set<GrantedAuthority> roles = new HashSet();
         roles.add(new SimpleGrantedAuthority(UserRoleEnum.USER.name()));
 
-        // на основании полученных данных формируем объект UserDetails
-        // который позволит проверить введенный пользователем логин и пароль
-        // и уже потом аутентифицировать пользователя
         UserDetails userDetails =
-                new org.springframework.security.core.userdetails.User(user.getLogin(), 
+                new org.springframework.security.core.userdetails.User(user.getUsername(), 
                                                                        user.getPassword(), 
                                                                        roles);
 
