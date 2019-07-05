@@ -10,15 +10,15 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.rmi.CORBA.Tie;
+import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.sadullaev.webProject.model.Event;
 import com.sadullaev.webProject.model.Room;
 import com.sadullaev.webProject.propertiesLoader.BackendConnection;
 
+@Service
 public class FreeRoomFinderServiceImpl implements FreeRoomFinderServiceDAO{
 
 	private static String getUrl() {
@@ -54,12 +54,10 @@ public class FreeRoomFinderServiceImpl implements FreeRoomFinderServiceDAO{
 	    } catch (IOException e) {
 			System.out.println("JSON kann nicht abgelesen werden.");
 		} 
-		
-		//System.out.println(json);
-		
+				
 	    Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
 		List<Room> rooms = gson.fromJson(json, new TypeToken<List<Room>>(){}.getType());
-		//System.out.println("Size: " + rooms.size());
+		
 		return rooms;
 	}
 	

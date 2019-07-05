@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -15,12 +16,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sadullaev.webProject.form.FreeRoomSearchForm;
 import com.sadullaev.webProject.model.Room;
-import com.sadullaev.webProject.services.FreeRoomFinderServiceImpl;
+import com.sadullaev.webProject.services.FreeRoomFinderServiceDAO;
 
 @Controller
 public class FreeRoomSearchController {
 	
-	FreeRoomFinderServiceImpl freeRoomFinderService = new FreeRoomFinderServiceImpl();
+	@Autowired
+	FreeRoomFinderServiceDAO freeRoomFinderService;
+	
 	
 	@RequestMapping(value="/search/freeRoom", method=RequestMethod.GET)
 	String search(Model model) {

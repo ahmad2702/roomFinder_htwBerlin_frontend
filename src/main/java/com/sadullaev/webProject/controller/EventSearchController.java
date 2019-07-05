@@ -1,10 +1,10 @@
 package com.sadullaev.webProject.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -15,12 +15,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.sadullaev.webProject.form.EventSearchForm;
 import com.sadullaev.webProject.form.FreeRoomSearchForm;
 import com.sadullaev.webProject.model.Event;
-import com.sadullaev.webProject.services.EventFinderServiceImpl;
+import com.sadullaev.webProject.services.EventFinderServiceDAO;
 
 @Controller
 public class EventSearchController {
 	
-	EventFinderServiceImpl eventFinderService = new EventFinderServiceImpl();
+	@Autowired
+	EventFinderServiceDAO eventFinderService;
+		
+	
 	
 	@RequestMapping(value="/search/event", method=RequestMethod.GET)
 	String search(Model model) {
@@ -45,7 +48,6 @@ public class EventSearchController {
 		String number = searchForm.getNumber();
 		
 		List<Event> result = eventFinderService.getEvents(title, date, lecturer, number);
-		//System.out.println(Arrays.toString(result.toArray()));
 		
 		model.addAttribute("listEvents", result); 
 		
