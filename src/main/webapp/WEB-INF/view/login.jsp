@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -63,9 +64,16 @@
 	  		
 	        <c:url value="/j_spring_security_check" var="loginUrl" />
 
-			<h4 class="card-title text-center mb-4 mt-1">Anmelden</h4>
+			<h4 class="card-title text-center mb-4 mt-1">USER</h4>
 			<hr>
-			<p class="text-success text-center">Some message goes here</p>
+			
+			
+			<c:if test="${param.error != null}">
+			        <p class="text-success text-center">Das von Ihnen eingegebene Login oder Passwort ist falsch! </p>
+			</c:if>
+						
+			
+			
 			
 			<form action="${loginUrl}" method="post">
 				<div class="form-group">
