@@ -86,6 +86,24 @@
 						  <form:input path="date" type="date" class="form-control form-control-sm" value="${currentDate}" required="required"/>
 					</div>
 					
+					<div class="input-group input-group-sm mb-3">
+						  <div class="input-group-prepend">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Zeituhr * : </span>
+						  </div>
+						  <form:input path="uhr" type="time" class="form-control form-control-sm" min="07:00" max="22:00" placeholder="z.B. 13:15" required="required" />
+					</div>
+					
+					<div class="input-group input-group-sm mb-3">
+						  <div class="input-group-prepend">
+							<span class="input-group-text" id="inputGroup-sizing-sm">Dauer(hh:mm) *: </span>
+						  </div>
+						  		<form:select path="dauer" class="form-control form-control-sm">
+								         	<c:forEach var="min" items="${minuten}">
+								         			<form:option value="${min}">${min}</form:option>								         		
+								         	</c:forEach>
+							  	</form:select>
+					</div>
+			
 					
 					<div class="input-group input-group-sm mb-3">
 						  <div class="input-group-prepend">
@@ -94,18 +112,12 @@
 						  <form:input path="room" type="text" class="form-control form-control-sm" placeholder="(optional)" />
 					</div>
 					
-					<div class="input-group input-group-sm mb-3">
-						  <div class="input-group-prepend">
-							<span class="input-group-text" id="inputGroup-sizing-sm">Dauer (min)* : </span>
-						  </div>
-						  <form:input path="time" type="number" class="form-control form-control-sm" min="15" max="900" placeholder="von 15 bis 900" required="required" />
-					</div>
 					
 					<div class="input-group input-group-sm mb-3">
 						  <div class="input-group-prepend">
 							<span class="input-group-text" id="inputGroup-sizing-sm">Ergebnisanzahl* : </span>
 						  </div>
-						  <form:input path="number" type="number" class="form-control form-control-sm" min="1" max="100" placeholder="von 1 bis 100" required="required" />
+						  <form:input path="number" type="number" class="form-control form-control-sm" min="1" max="100" placeholder="von 1 bis 100" required="required" value="15"/>
 					</div>
 					
 					<span class="small">

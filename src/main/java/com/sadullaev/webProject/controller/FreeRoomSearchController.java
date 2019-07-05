@@ -1,6 +1,7 @@
 package com.sadullaev.webProject.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,6 +26,26 @@ public class FreeRoomSearchController {
 	FreeRoomFinderServiceDAO freeRoomFinderService;
 	
 	
+	List<String> getMinuten() {
+		List<String> minuten = new ArrayList<String>();
+		minuten.add("00");
+		minuten.add("15");
+		minuten.add("30");
+		minuten.add("45");
+		
+		List<String> result = new ArrayList<String>();
+		for(int hour = 0; hour < 10; hour++) {
+			for(int min = 0; min < minuten.size(); min++) {
+				String dauer = hour + ":" + minuten.get(min);
+				if(!dauer.equals("0:00")) {
+					result.add(dauer);
+				}
+			}
+		}
+
+		return result;
+	}
+	
 	@RequestMapping(value="/search/freeRoom", method=RequestMethod.GET)
 	String search(Model model) {
 
@@ -32,6 +53,8 @@ public class FreeRoomSearchController {
 		
 		String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		model.addAttribute("currentDate", currentDate); 
+
+		model.addAttribute("minuten", getMinuten()); 
 		
 		boolean startSearch = true;
 		model.addAttribute("startSearch", startSearch); 
@@ -44,18 +67,42 @@ public class FreeRoomSearchController {
     		ModelMap model) {
         
 		String date = freeRoomSearchForm.getDate();
+		
+		String uhr = freeRoomSearchForm.getUhr();	
+		System.out.println(uhr);
+		
+		String dauer = convertStringToDauer(freeRoomSearchForm.getDauer());	
+		System.out.println(dauer);
+
 		String roomName = freeRoomSearchForm.getRoom();		
-		String time = freeRoomSearchForm.getTime();		
 		String number = freeRoomSearchForm.getNumber();
 		
-		List<Room> rooms = freeRoomFinderService.getRooms(date, roomName, time, number);
+		
+			
+		
+		
+		List<Room> rooms = freeRoomFinderService.getRooms(date, roomName, dauer, number);
 		
 		model.addAttribute("rooms", rooms); 
 		
 		boolean startSearch = false;
 		model.addAttribute("startSearch", startSearch); 
+		
+		model.addAttribute("minuten", getMinuten()); 
 
         return "freeRoomSearchPage";
     }
+	
+	String convertStringToDauer(String dauer) {
+		String[] data = dauer.split(":");
+		
+		int hour = Integer.parseInt(data[0]) * 60;
+		int min = Integer.parseInt(data[1]);
+		int sum = hour + min;
+		
+		return "" + sum;
+	}
+	
+	
 	
 }

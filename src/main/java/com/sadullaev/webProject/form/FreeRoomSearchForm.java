@@ -4,7 +4,8 @@ public class FreeRoomSearchForm {
 	
 	private String date;
 	private String room;
-	private String time;
+	private String uhr;
+	private String dauer;
 	private String number;
 	
 	public String getDate() {
@@ -19,11 +20,17 @@ public class FreeRoomSearchForm {
 	public void setRoom(String room) {
 		this.room = room;
 	}
-	public String getTime() {
-		return time;
+	public String getUhr() {
+		return uhr;
 	}
-	public void setTime(String time) {
-		this.time = time;
+	public void setUhr(String uhr) {
+		this.uhr = uhr;
+	}
+	public String getDauer() {
+		return dauer;
+	}
+	public void setDauer(String dauer) {
+		this.dauer = dauer;
 	}
 	public String getNumber() {
 		return number;
