@@ -1,5 +1,7 @@
 package com.sadullaev.webProject.controller;
 
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +13,13 @@ public class LoginController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String loginPage(Model model){
-        return "login";
+    	
+    	if(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken ) {
+    		return "login";
+    	}else {
+    		return "redirect:/account";
+    	}
+    	
     }
 
 }

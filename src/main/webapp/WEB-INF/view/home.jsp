@@ -57,8 +57,8 @@
 			</security:authorize>
 			
 			<security:authorize access="!isAuthenticated()">
-          		<li class="nav-item active">
-		            <a class="nav-link" href="/login">Anmelden</a>
+          		<li class="nav-item">
+		            <a class="nav-link" href="/login">Login</a>
 		        </li>
           	</security:authorize>
           

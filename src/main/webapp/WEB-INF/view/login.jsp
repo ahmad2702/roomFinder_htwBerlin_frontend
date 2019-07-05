@@ -41,30 +41,11 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          
-          	<security:authorize access="isAuthenticated()">
-		    	
-		    	<li class="nav-item">
-		            <a class="nav-link" href="/search">Search</a>
-		        </li>
-		        <li class="nav-item">
-		            <a class="nav-link" href="/myList">Meine Liste</a>
-		        </li>
-		        <li class="nav-item">
-		            <a class="nav-link" href="/account">Mein Profil</a>
-		        </li>
-		        <li class="nav-item">
-		            <a class="nav-link" href="/logout">LOGOUT</a>
-		        </li>
-		    	
-			</security:authorize>
-			
-			<security:authorize access="!isAuthenticated()">
+
           		<li class="nav-item active">
-		            <a class="nav-link" href="/login">Anmelden</a>
+		            <a class="nav-link" href="/login">Login</a>
 		        </li>
-          	</security:authorize>
-          
+
         </ul>
       </div>
     </div>
