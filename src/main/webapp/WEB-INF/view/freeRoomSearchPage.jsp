@@ -88,18 +88,22 @@
 					
 					<div class="input-group input-group-sm mb-3">
 						  <div class="input-group-prepend">
-							<span class="input-group-text" id="inputGroup-sizing-sm">Zeituhr * : </span>
+							<span class="input-group-text" id="inputGroup-sizing-sm">Zeituhr* : </span>
 						  </div>
-						  <form:input path="uhr" type="time" class="form-control form-control-sm" min="07:00" max="22:00" placeholder="z.B. 13:15" required="required" />
+						  		<form:select path="uhr" class="form-control form-control-sm">
+								         	<c:forEach var="i" items="${zeituhr}">
+								         			<form:option value="${i}">${i}</form:option>								         		
+								         	</c:forEach>
+							  	</form:select>
 					</div>
 					
 					<div class="input-group input-group-sm mb-3">
 						  <div class="input-group-prepend">
-							<span class="input-group-text" id="inputGroup-sizing-sm">Dauer(hh:mm) *: </span>
+							<span class="input-group-text" id="inputGroup-sizing-sm">Dauer(hh:mm)* : </span>
 						  </div>
 						  		<form:select path="dauer" class="form-control form-control-sm">
-								         	<c:forEach var="min" items="${minuten}">
-								         			<form:option value="${min}">${min}</form:option>								         		
+								         	<c:forEach var="i" items="${dauer}">
+								         			<form:option value="${i}">${i}</form:option>								         		
 								         	</c:forEach>
 							  	</form:select>
 					</div>

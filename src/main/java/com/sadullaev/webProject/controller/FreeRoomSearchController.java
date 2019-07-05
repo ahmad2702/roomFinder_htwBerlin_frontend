@@ -26,7 +26,7 @@ public class FreeRoomSearchController {
 	FreeRoomFinderServiceDAO freeRoomFinderService;
 	
 	
-	List<String> getMinuten() {
+	List<String> getTimeFormatForSelect(int von, int bis) {
 		List<String> minuten = new ArrayList<String>();
 		minuten.add("00");
 		minuten.add("15");
@@ -34,7 +34,7 @@ public class FreeRoomSearchController {
 		minuten.add("45");
 		
 		List<String> result = new ArrayList<String>();
-		for(int hour = 0; hour < 10; hour++) {
+		for(int hour = von; hour < bis; hour++) {
 			for(int min = 0; min < minuten.size(); min++) {
 				String dauer = hour + ":" + minuten.get(min);
 				if(!dauer.equals("0:00")) {
@@ -45,6 +45,7 @@ public class FreeRoomSearchController {
 
 		return result;
 	}
+
 	
 	@RequestMapping(value="/search/freeRoom", method=RequestMethod.GET)
 	String search(Model model) {
@@ -54,7 +55,8 @@ public class FreeRoomSearchController {
 		String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		model.addAttribute("currentDate", currentDate); 
 
-		model.addAttribute("minuten", getMinuten()); 
+		model.addAttribute("dauer", getTimeFormatForSelect(0, 10)); 
+		model.addAttribute("zeituhr", getTimeFormatForSelect(7, 20)); 
 		
 		boolean startSearch = true;
 		model.addAttribute("startSearch", startSearch); 
@@ -88,7 +90,8 @@ public class FreeRoomSearchController {
 		boolean startSearch = false;
 		model.addAttribute("startSearch", startSearch); 
 		
-		model.addAttribute("minuten", getMinuten()); 
+		model.addAttribute("dauer", getTimeFormatForSelect(0, 10)); 
+		model.addAttribute("zeituhr", getTimeFormatForSelect(7, 20)); 
 
         return "freeRoomSearchPage";
     }
