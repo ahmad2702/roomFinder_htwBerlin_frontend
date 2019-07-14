@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
@@ -14,14 +14,14 @@
   <title>HTW Berlin | Room Finder</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<c:url value="/" />resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   
   <!-- Custom core CSS -->
-  <link href="/resources/css/navbar_custom.css" rel="stylesheet">
-  <link href="/resources/css/position_custom.css" rel="stylesheet">
+  <link href="<c:url value="/" />resources/css/navbar_custom.css" rel="stylesheet">
+  <link href="<c:url value="/" />resources/css/position_custom.css" rel="stylesheet">
   
   <!-- Favicon -->
-  <link rel="shortcut icon" href="/resources/images/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="<c:url value="/" />resources/images/favicon.ico" type="image/x-icon">
 
 </head>
 
@@ -30,7 +30,7 @@
 	<!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom static-top">
     <div class="container">
-      <a class="navbar-brand" href="/">HTW Berlin | Room Finder</a>
+      <a class="navbar-brand" href="<c:url value="/" />">HTW Berlin | Room Finder</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -38,16 +38,16 @@
         <ul class="navbar-nav ml-auto">
           
           <li class="nav-item">
-            <a class="nav-link" href="/search">Search</a>
+            <a class="nav-link" href="<c:url value="/search" />">Search</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="/myList">Meine Liste</a>
+            <a class="nav-link" href="<c:url value="/myList" />">Meine Liste</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/account">Mein Profil</a>
+            <a class="nav-link" href="<c:url value="/account" />">Mein Profil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/logout">LOGOUT</a>
+            <a class="nav-link" href="<c:url value="/logout" />">LOGOUT</a>
           </li>
           
         </ul>
@@ -119,8 +119,8 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="/resources/jquery/jquery.slim.min.js"></script>
-  <script src="/resources/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<c:url value="/" />resources/jquery/jquery.slim.min.js"></script>
+  <script src="<c:url value="/" />resources/bootstrap/js/bootstrap.bundle.min.js"></script>
 	
 </body>
 </html>
