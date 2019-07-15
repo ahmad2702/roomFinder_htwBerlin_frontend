@@ -30,7 +30,7 @@ public class FreeRoomFinderServiceImpl implements FreeRoomFinderServiceDAO{
 	}
 	
 	@Override
-	public List<Room> getRooms(String date, String roomName, String time, String number) {
+	public List<Room> getRooms(String date, String roomName, String uhr, String time, String number) {
 		String url = getUrl() + "/rooms/free";
 		
 		String json = "";
@@ -41,6 +41,7 @@ public class FreeRoomFinderServiceImpl implements FreeRoomFinderServiceDAO{
 		    conn = urlObj.openConnection();
 		    conn.setRequestProperty("date", date);
 		    conn.setRequestProperty("room", roomName);
+		    conn.setRequestProperty("uhr", uhr);
 		    conn.setRequestProperty("time", time);
 		    conn.setRequestProperty("number", number);
 		}catch(IOException e) {

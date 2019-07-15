@@ -26,7 +26,7 @@ public class FreeRoomSearchController {
 	FreeRoomFinderServiceDAO freeRoomFinderService;
 	
 	
-	List<String> getTimeFormatForSelect(int von, int bis) {
+	List<String> getTimeFormatForDauer(int von, int bis) {
 		List<String> minuten = new ArrayList<String>();
 		minuten.add("00");
 		minuten.add("15");
@@ -45,6 +45,34 @@ public class FreeRoomSearchController {
 
 		return result;
 	}
+	
+	List<String> getTimeFormatForZeituhr(int von, int bis) {
+		List<String> minuten = new ArrayList<String>();
+		minuten.add("00");
+		minuten.add("15");
+		minuten.add("30");
+		minuten.add("45");
+		
+		List<String> result = new ArrayList<String>();
+		for(int hour = von; hour < bis; hour++) {
+			for(int min = 0; min < minuten.size(); min++) {
+				
+				String zeit = "";
+				if(hour < 10) {
+					zeit = 0 + "" + hour + ":" + minuten.get(min);
+				}else {
+					zeit = hour + ":" + minuten.get(min);
+				}
+
+				if(!zeit.equals("00:00")) {
+					result.add(zeit);
+				}
+				
+			}
+		}
+
+		return result;
+	}
 
 	
 	@RequestMapping(value="/search/freeRoom", method=RequestMethod.GET)
@@ -55,8 +83,8 @@ public class FreeRoomSearchController {
 		String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		model.addAttribute("currentDate", currentDate); 
 
-		model.addAttribute("dauer", getTimeFormatForSelect(0, 10)); 
-		model.addAttribute("zeituhr", getTimeFormatForSelect(7, 20)); 
+		model.addAttribute("dauer", getTimeFormatForDauer(0, 10)); 
+		model.addAttribute("zeituhr", getTimeFormatForZeituhr(7, 20)); 
 		
 		boolean startSearch = true;
 		model.addAttribute("startSearch", startSearch); 
@@ -83,15 +111,15 @@ public class FreeRoomSearchController {
 			
 		
 		
-		List<Room> rooms = freeRoomFinderService.getRooms(date, roomName, dauer, number);
+		List<Room> rooms = freeRoomFinderService.getRooms(date, roomName, uhr, dauer, number);
 		
 		model.addAttribute("rooms", rooms); 
 		
 		boolean startSearch = false;
 		model.addAttribute("startSearch", startSearch); 
 		
-		model.addAttribute("dauer", getTimeFormatForSelect(0, 10)); 
-		model.addAttribute("zeituhr", getTimeFormatForSelect(7, 20)); 
+		model.addAttribute("dauer", getTimeFormatForDauer(0, 10)); 
+		model.addAttribute("zeituhr", getTimeFormatForZeituhr(7, 20)); 
 
         return "freeRoomSearchPage";
     }

@@ -6,6 +6,6 @@ import com.sadullaev.webProject.model.Room;
 
 public interface FreeRoomFinderServiceDAO {
 	
-	public List<Room> getRooms(String date, String roomName, String time, String number);
+	public List<Room> getRooms(String date, String roomName, String uhr, String time, String number);
 	
 }
