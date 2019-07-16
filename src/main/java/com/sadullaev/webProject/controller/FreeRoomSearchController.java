@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.sadullaev.webProject.form.BookRoom;
 import com.sadullaev.webProject.form.FreeRoomSearchForm;
 import com.sadullaev.webProject.model.Room;
 import com.sadullaev.webProject.services.FreeRoomFinderServiceDAO;
@@ -25,7 +26,7 @@ public class FreeRoomSearchController {
 	@Autowired
 	FreeRoomFinderServiceDAO freeRoomFinderService;
 	
-	
+	//------------------------------------------------------------------------------------
 	List<String> getTimeFormatForDauer(int von, int bis) {
 		List<String> minuten = new ArrayList<String>();
 		minuten.add("00");
@@ -73,12 +74,15 @@ public class FreeRoomSearchController {
 
 		return result;
 	}
+	//------------------------------------------------------------------------------------
 
 	
+	//---------------------Search START-------------------------------------------------------
 	@RequestMapping(value="/search/freeRoom", method=RequestMethod.GET)
 	String search(Model model) {
 
 		model.addAttribute("freeRoomSearchForm", new FreeRoomSearchForm()); 
+		model.addAttribute("bookRoomForm", new BookRoom()); 
 		
 		String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		model.addAttribute("currentDate", currentDate); 
@@ -93,27 +97,18 @@ public class FreeRoomSearchController {
 	}
 	
 	@RequestMapping(value = "/search/freeRoom", method = RequestMethod.POST)
-    public String submit(@Valid @ModelAttribute("freeRoomSearchForm") FreeRoomSearchForm freeRoomSearchForm,
+    public String clickOnSearchButton(@Valid @ModelAttribute("freeRoomSearchForm") FreeRoomSearchForm freeRoomSearchForm,
     		ModelMap model) {
         
 		String date = freeRoomSearchForm.getDate();
-		
 		String uhr = freeRoomSearchForm.getUhr();	
-		System.out.println(uhr);
-		
 		String dauer = convertStringToDauer(freeRoomSearchForm.getDauer());	
-		System.out.println(dauer);
-
-		String roomName = freeRoomSearchForm.getRoom();		
+		String roomName = freeRoomSearchForm.getRoom();
 		String number = freeRoomSearchForm.getNumber();
-		
-		
-			
-		
-		// Die Liste wird hier von Backend abgefragt
+
+		// Die Liste wird hier von Backend abgefragt und optimisiert
 		List<Room> rooms = freeRoomFinderService.getFreeRoomsForBooking(date, roomName, uhr, dauer, number);
-		
-		
+
 		model.addAttribute("rooms", rooms); 
 		
 		boolean startSearch = false;
@@ -121,9 +116,15 @@ public class FreeRoomSearchController {
 		
 		model.addAttribute("dauer", getTimeFormatForDauer(0, 10)); 
 		model.addAttribute("zeituhr", getTimeFormatForZeituhr(7, 20)); 
+		
+		model.addAttribute("bookRoomForm", new BookRoom()); 
 
         return "freeRoomSearchPage";
     }
+	//--------------------------------Search END---------------------------------------------------
+	
+	
+	//------------------------------------------------------------------------------------
 	
 	String convertStringToDauer(String dauer) {
 		String[] data = dauer.split(":");
@@ -134,6 +135,34 @@ public class FreeRoomSearchController {
 		
 		return "" + sum;
 	}
+	
+	
+	
+	//-----------------------------BELEGUNG START------------------------------------------------------
+	@RequestMapping(value = "/search/freeRoom/save", method = RequestMethod.POST)
+    public String save(@Valid @ModelAttribute("bookRoomForm") BookRoom bookRoom,
+    		ModelMap model) {
+		
+		String date = bookRoom.getDate();
+		System.out.println(date);
+		
+		String room = bookRoom.getRoom();
+		System.out.println(room);
+		
+		String begin = bookRoom.getBegin();
+		System.out.println(begin);
+		
+		String end = bookRoom.getEnd();
+		System.out.println(end);
+		
+		
+		
+		return "redirect:/myList";
+	}
+	
+	
+	
+	//-------------------------------BELEGUNG END----------------------------------------------------
 	
 	
 	

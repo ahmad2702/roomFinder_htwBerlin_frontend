@@ -77,7 +77,7 @@
 			<!-- Search Form for Events START-->
 			<div class="col-lg-12 text-left" id="searchEventForm">
 
-				<form:form action="/search/event" method="POST" modelAttribute="eventSearchForm">
+				<form:form action="" method="POST" modelAttribute="eventSearchForm">
 					
 					<div class="input-group input-group-sm mb-3">
 						  <div class="input-group-prepend">
@@ -106,7 +106,7 @@
 						  <div class="input-group-prepend">
 							<span class="input-group-text" id="inputGroup-sizing-sm">Ergebnisanzahl* : </span>
 						  </div>
-						  <form:input path="number" type="number" class="form-control form-control-sm" min="1" max="100" placeholder="von 1 bis 100" required="required" />
+						  <form:input path="number" type="number" class="form-control form-control-sm" min="1" max="100" placeholder="von 1 bis 100" required="required" value="15" />
 					</div>
 					
 					<span class="small">

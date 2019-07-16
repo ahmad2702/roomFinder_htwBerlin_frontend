@@ -77,7 +77,7 @@
 			<!-- Search Form for Free Room START-->
 			<div class="col-lg-12 text-left" id="searchFreeRoomForm">
 
-				<form:form action="/search/freeRoom" method="POST" modelAttribute="freeRoomSearchForm">
+				<form:form action="" method="POST" modelAttribute="freeRoomSearchForm">
 					
 					<div class="input-group input-group-sm mb-3">
 						  <div class="input-group-prepend">
@@ -155,7 +155,18 @@
 										  <td>${room.roomName}</td>
 										  <td><fmt:formatDate value="${room.beginTime}" type="date" pattern="HH:mm"/></td>
 										  <td><fmt:formatDate value="${room.endTime}" type="date" pattern="HH:mm"/></td>
-										  <td><button type="button" class="btn btn-secondary btn-sm">speichern</button></td>
+										  <td>
+										  
+										  		<form:form action="freeRoom/save" method="POST" modelAttribute="bookRoomForm">
+										  			<form:input path="date" type="hidden" value="${room.date}" />
+										  			<form:input path="room" type="hidden" value="${room.roomName}" />
+										  			<form:input path="begin" type="hidden" value="${room.beginTime}" />
+										  			<form:input path="end" type="hidden" value="${room.endTime}" />
+										  			
+										  			<input type="submit" class="btn btn-secondary btn-sm" value="speichern">
+										  		</form:form>
+										  
+										  </td>
 										</tr>
 								</c:forEach>
 							</tbody> 
