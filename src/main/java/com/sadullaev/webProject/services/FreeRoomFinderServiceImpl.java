@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,6 +60,19 @@ public class FreeRoomFinderServiceImpl implements FreeRoomFinderServiceDAO{
 				
 	    Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
 		List<Room> rooms = gson.fromJson(json, new TypeToken<List<Room>>(){}.getType());
+		
+		return rooms;
+	}
+
+	@Override
+	public List<Room> getFreeRoomsForBooking(String date, String roomName, String uhr, String time, String number) {
+		List<Room> rooms = getRooms(date, roomName, uhr, time, number);
+
+		if(rooms.size() != 0) {
+			int timeAsIntAndInMiliseconds = Integer.parseInt(time) * 60000;
+
+			rooms.stream().forEach(x -> x.setEndTime(new Timestamp(x.getBeginTime().getTime() + timeAsIntAndInMiliseconds)));
+		}
 		
 		return rooms;
 	}

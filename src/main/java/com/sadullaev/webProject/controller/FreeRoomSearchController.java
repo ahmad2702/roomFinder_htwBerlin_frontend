@@ -111,7 +111,7 @@ public class FreeRoomSearchController {
 			
 		
 		// Die Liste wird hier von Backend abgefragt
-		List<Room> rooms = freeRoomFinderService.getRooms(date, roomName, uhr, dauer, number);
+		List<Room> rooms = freeRoomFinderService.getFreeRoomsForBooking(date, roomName, uhr, dauer, number);
 		
 		
 		model.addAttribute("rooms", rooms); 
