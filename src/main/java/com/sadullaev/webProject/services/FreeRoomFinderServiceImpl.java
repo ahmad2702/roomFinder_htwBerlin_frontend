@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -62,16 +61,7 @@ public class FreeRoomFinderServiceImpl implements FreeRoomFinderServiceDAO{
 		return rooms;
 	}
 	
-	private static void filterAndOptimizeRooms(List<Room> rooms, Timestamp startTime, int dauer) {
-		
-		
-		
-		rooms.stream().filter(room -> startTime.getTime() > room.getBeginTime().getTime() && startTime.getTime()+dauer < room.getBeginTime().getTime());
-		
-		
-		
-		
-	}
+	
 	
 
 }
