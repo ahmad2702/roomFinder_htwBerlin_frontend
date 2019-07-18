@@ -2,7 +2,7 @@ package com.sadullaev.webProject.services;
 
 import java.util.List;
 
-import com.sadullaev.webProject.model.Room;
+import com.sadullaev.webProject.form.freeRooms.Room;
 
 public interface FreeRoomFinderServiceDAO {
 	

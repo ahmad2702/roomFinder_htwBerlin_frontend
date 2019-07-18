@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.sadullaev.webProject.model.Event;
+import com.sadullaev.webProject.form.events.Event;
 import com.sadullaev.webProject.propertiesLoader.BackendConnection;
 import com.google.gson.reflect.TypeToken;
 

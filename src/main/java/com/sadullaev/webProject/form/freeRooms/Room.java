@@ -1,4 +1,4 @@
-package com.sadullaev.webProject.model;
+package com.sadullaev.webProject.form.freeRooms;
 
 import java.sql.Date;
 import java.sql.Timestamp;

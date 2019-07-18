@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.sadullaev.webProject.form.EventSearchForm;
-import com.sadullaev.webProject.form.FreeRoomSearchForm;
-import com.sadullaev.webProject.model.Event;
+import com.sadullaev.webProject.form.events.Event;
+import com.sadullaev.webProject.form.events.EventSearchForm;
+import com.sadullaev.webProject.form.freeRooms.FreeRoomSearchForm;
 import com.sadullaev.webProject.services.EventFinderServiceDAO;
 
 @Controller

@@ -1,4 +1,4 @@
-package com.sadullaev.webProject.form;
+package com.sadullaev.webProject.form.events;
 
 public class EventSearchForm {
 	

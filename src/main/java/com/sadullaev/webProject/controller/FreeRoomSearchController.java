@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.sadullaev.webProject.form.BookRoom;
-import com.sadullaev.webProject.form.FreeRoomSearchForm;
-import com.sadullaev.webProject.model.Room;
+import com.sadullaev.webProject.form.freeRooms.BookRoom;
+import com.sadullaev.webProject.form.freeRooms.FreeRoomSearchForm;
+import com.sadullaev.webProject.form.freeRooms.Room;
 import com.sadullaev.webProject.services.FreeRoomFinderServiceDAO;
 
 @Controller

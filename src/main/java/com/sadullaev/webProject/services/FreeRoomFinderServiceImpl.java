@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.sadullaev.webProject.model.Room;
+import com.sadullaev.webProject.form.freeRooms.Room;
 import com.sadullaev.webProject.propertiesLoader.BackendConnection;
 
 @Service
