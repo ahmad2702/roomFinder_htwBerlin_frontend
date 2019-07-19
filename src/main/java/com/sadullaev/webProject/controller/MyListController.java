@@ -41,7 +41,7 @@ public class MyListController {
 	    public String save(@Valid @ModelAttribute("bookRoomForm") BookRoom bookRoom,
 	    		ModelMap model) {
 			
-			int id = Integer.parseInt(bookRoom.getId());
+			int id = bookRoom.getId();
 			System.out.println(id);
 			
 			BookingList booking = bookingRepository.findById(id);
