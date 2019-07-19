@@ -93,6 +93,13 @@
 									<br>
 								</c:forEach>
 								
+								<form:form action="edit/addUser" method="POST" modelAttribute="addUser">
+										<form:input path="bookingId" type="hidden" value="${booking.id}" />
+										
+										<form:input path="username" type="text" required="required"/>
+										<input type="submit" value="hinzufügen">
+								</form:form>
+								
 								<br><br>
 						</p>
 						

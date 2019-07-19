@@ -14,5 +14,6 @@ public interface BookingRepository extends CrudRepository<BookingList, Integer>{
 	BookingList findById(int id);
 	
 	List<BookingList> findAllByDateAndRoom(Date date, String room);
+
 	
 }

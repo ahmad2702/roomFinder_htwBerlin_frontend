@@ -1,5 +1,6 @@
 package com.sadullaev.webProject.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -19,8 +20,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="booking_list")
-public class BookingList {
+public class BookingList implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2L;
+
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

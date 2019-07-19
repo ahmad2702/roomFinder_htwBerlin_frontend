@@ -10,13 +10,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.sadullaev.webProject.form.addUserToRoom.AddUserToBooking;
 import com.sadullaev.webProject.form.freeRooms.Room;
 import com.sadullaev.webProject.model.BookingList;
 import com.sadullaev.webProject.model.User;
 import com.sadullaev.webProject.repository.BookingRepository;
+import com.sadullaev.webProject.repository.UsersRepository;
 
 @Controller
 public class MyListController {
+	
+	@Autowired
+	UsersRepository userRepository;
 	
 	@Autowired
 	BookingRepository bookingRepository;
@@ -46,12 +51,37 @@ public class MyListController {
 			
 			BookingList booking = bookingRepository.findById(id);
 			model.addAttribute("booking", booking); 
+			model.addAttribute("addUser", new AddUserToBooking());
 			
 			return "edit_booking";
 		}
 		
 		//-------------------------------BELEGUNG END----------------------------------------------------
-
 		
+		@RequestMapping(value = "/myList/edit/addUser", method = RequestMethod.POST)
+	    public String addUser(@Valid @ModelAttribute("addUser") AddUserToBooking addUserToBooking,
+	    		ModelMap model) {
+			
+			String username = addUserToBooking.getUsername();
+			System.out.println("Username: " + username);
+			User newUser = userRepository.findByUsername(username); 
+			
+			
+			int id = addUserToBooking.getBookingId();
+			BookingList booking = bookingRepository.findById(id);
+			
+			if(newUser != null) {
+				booking.addUser(newUser);
+				bookingRepository.save(booking);
+			}
+
+
+			
+			
+			model.addAttribute("booking", booking); 
+			model.addAttribute("addUser", new AddUserToBooking());
+			
+			return "edit_booking";
+		}
 		
 }
