@@ -159,9 +159,9 @@
 										  
 										  		<form:form action="freeRoom/save" method="POST" modelAttribute="bookRoomForm">
 										  			<form:input path="date" type="hidden" value="${room.date}" />
-										  			<form:input path="room" type="hidden" value="${room.roomName}" />
-										  			<form:input path="begin" type="hidden" value="${room.beginTime}" />
-										  			<form:input path="end" type="hidden" value="${room.endTime}" />
+										  			<form:input path="roomName" type="hidden" value="${room.roomName}" />
+										  			<form:input path="beginTime" type="hidden" value="${room.beginTime}" />
+										  			<form:input path="endTime" type="hidden" value="${room.endTime}" />
 										  			
 										  			<input type="submit" class="btn btn-secondary btn-sm" value="speichern">
 										  		</form:form>

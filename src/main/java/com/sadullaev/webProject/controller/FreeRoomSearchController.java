@@ -1,5 +1,6 @@
 package com.sadullaev.webProject.controller;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.sadullaev.webProject.form.freeRooms.BookRoom;
 import com.sadullaev.webProject.form.freeRooms.FreeRoomSearchForm;
 import com.sadullaev.webProject.form.freeRooms.Room;
 import com.sadullaev.webProject.services.FreeRoomFinderServiceDAO;
@@ -82,7 +82,7 @@ public class FreeRoomSearchController {
 	String search(Model model) {
 
 		model.addAttribute("freeRoomSearchForm", new FreeRoomSearchForm()); 
-		model.addAttribute("bookRoomForm", new BookRoom()); 
+		model.addAttribute("bookRoomForm", new Room()); 
 		
 		String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		model.addAttribute("currentDate", currentDate); 
@@ -117,7 +117,7 @@ public class FreeRoomSearchController {
 		model.addAttribute("dauer", getTimeFormatForDauer(0, 10)); 
 		model.addAttribute("zeituhr", getTimeFormatForZeituhr(7, 20)); 
 		
-		model.addAttribute("bookRoomForm", new BookRoom()); 
+		model.addAttribute("bookRoomForm", new Room()); 
 
         return "freeRoomSearchPage";
     }
@@ -140,19 +140,19 @@ public class FreeRoomSearchController {
 	
 	//-----------------------------BELEGUNG START------------------------------------------------------
 	@RequestMapping(value = "/search/freeRoom/save", method = RequestMethod.POST)
-    public String save(@Valid @ModelAttribute("bookRoomForm") BookRoom bookRoom,
+    public String save(@Valid @ModelAttribute("bookRoomForm") Room room,
     		ModelMap model) {
 		
-		String date = bookRoom.getDate();
+		java.sql.Date date = room.getDate();
 		System.out.println(date);
 		
-		String room = bookRoom.getRoom();
+		String roomName = room.getRoomName();
 		System.out.println(room);
 		
-		String begin = bookRoom.getBegin();
+		Timestamp begin = room.getBeginTime();
 		System.out.println(begin);
 		
-		String end = bookRoom.getEnd();
+		Timestamp end = room.getEndTime();
 		System.out.println(end);
 		
 		

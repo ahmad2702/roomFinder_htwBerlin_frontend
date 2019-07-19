@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 
 public class Room {
 	
+	private int id;
 	private Date date;
 	private String roomName;
 	private Timestamp beginTime;
@@ -17,6 +18,18 @@ public class Room {
 		this.beginTime = beginTime;
 		this.endTime = endTime;
 		this.time = time;
+	}
+	
+	public Room() {
+		
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Date getDate() {

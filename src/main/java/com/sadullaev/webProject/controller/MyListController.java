@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.sadullaev.webProject.form.freeRooms.BookRoom;
+import com.sadullaev.webProject.form.freeRooms.Room;
 import com.sadullaev.webProject.model.BookingList;
 import com.sadullaev.webProject.model.User;
 import com.sadullaev.webProject.repository.BookingRepository;
@@ -27,7 +27,7 @@ public class MyListController {
 		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
 		model.addAttribute("booking_list", user.getBookingList());
-		model.addAttribute("bookRoomForm", new BookRoom()); 
+		model.addAttribute("bookRoomForm", new Room()); 
 		
 		return "my_list";
 	}
@@ -38,10 +38,10 @@ public class MyListController {
 	
 	//-----------------------------Bearbeitung START------------------------------------------------------
 		@RequestMapping(value = "/myList/edit", method = RequestMethod.POST)
-	    public String save(@Valid @ModelAttribute("bookRoomForm") BookRoom bookRoom,
+	    public String save(@Valid @ModelAttribute("bookRoomForm") Room room,
 	    		ModelMap model) {
 			
-			int id = bookRoom.getId();
+			int id = room.getId();
 			System.out.println(id);
 			
 			BookingList booking = bookingRepository.findById(id);
