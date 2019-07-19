@@ -41,7 +41,10 @@ public class MyListController {
 	}
 	
 	
-	
+	@RequestMapping("/myList/edit")
+	String editPageRedirect(ModelMap model) {
+		return "redirect:/myList";
+	}
 	
 	
 	//-----------------------------Bearbeitung START------------------------------------------------------
@@ -61,6 +64,11 @@ public class MyListController {
 		
 		//-------------------------------BELEGUNG END----------------------------------------------------
 		
+		@RequestMapping("/myList/edit/addUser")
+		String addUserRedirect(ModelMap model) {
+			return "redirect:/myList";
+		}
+		
 		@RequestMapping(value = "/myList/edit/addUser", method = RequestMethod.POST)
 	    public String addUser(@Valid @ModelAttribute("addUser") AddUserToBooking addUserToBooking,
 	    		ModelMap model) {
@@ -74,8 +82,12 @@ public class MyListController {
 			BookingList booking = bookingRepository.findById(id).get();
 			
 			if(newUser != null) {
-				booking.addUser(newUser);
+				if(booking.getUsers().stream().filter(x -> x.getUsername().equals(username)).findFirst().get() == null) {
+					booking.addUser(newUser);
 				bookingRepository.save(booking);
+				}
+			}else {
+				// user existiert nicht
 			}
 
 
