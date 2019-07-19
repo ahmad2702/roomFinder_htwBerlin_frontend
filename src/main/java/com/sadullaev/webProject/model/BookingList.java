@@ -2,6 +2,7 @@ package com.sadullaev.webProject.model;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -21,7 +22,7 @@ import javax.persistence.Table;
 public class BookingList {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 	
@@ -99,6 +100,13 @@ public class BookingList {
 
 	public void setUsers(List<User> users) {
 		this.users = users;
+	}
+	
+	public void addUser(User user) {
+		if(users==null || users.size()==0) {
+			users = new ArrayList<User>();
+		}
+		users.add(user);
 	}
 
 	public int getId() {

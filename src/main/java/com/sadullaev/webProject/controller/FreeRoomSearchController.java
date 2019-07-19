@@ -9,6 +9,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -18,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sadullaev.webProject.form.freeRooms.FreeRoomSearchForm;
 import com.sadullaev.webProject.form.freeRooms.Room;
+import com.sadullaev.webProject.model.BookingList;
+import com.sadullaev.webProject.model.User;
+import com.sadullaev.webProject.repository.BookingRepository;
 import com.sadullaev.webProject.services.FreeRoomFinderServiceDAO;
 
 @Controller
@@ -25,6 +29,9 @@ public class FreeRoomSearchController {
 	
 	@Autowired
 	FreeRoomFinderServiceDAO freeRoomFinderService;
+	
+	@Autowired
+	BookingRepository bookingRepository;
 	
 	//------------------------------------------------------------------------------------
 	List<String> getTimeFormatForDauer(int von, int bis) {
@@ -143,19 +150,22 @@ public class FreeRoomSearchController {
     public String save(@Valid @ModelAttribute("bookRoomForm") Room room,
     		ModelMap model) {
 		
-		java.sql.Date date = room.getDate();
-		System.out.println(date);
-		
+		java.sql.Date date = room.getDate();		
 		String roomName = room.getRoomName();
-		System.out.println(room);
-		
 		Timestamp begin = room.getBeginTime();
-		System.out.println(begin);
-		
 		Timestamp end = room.getEndTime();
-		System.out.println(end);
 		
+		BookingList booking = new BookingList();
+		booking.setDate(date);
+		booking.setRoom(roomName);
+		booking.setBegin(begin);
+		booking.setEnd(end);
+		booking.setStatus("ok");
 		
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		booking.addUser(user);
+		
+		bookingRepository.save(booking);
 		
 		return "redirect:/myList";
 	}
