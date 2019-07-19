@@ -84,6 +84,16 @@
 								
 								End: <fmt:formatDate value="${booking.end}" type="date" pattern="HH:mm"/>
 								<br><br>
+								
+								Users: 
+								<br>
+								
+								<c:forEach var="user" items="${booking.users}">
+									${user.firstname} ${user.lastname} (${user.username})
+									<br>
+								</c:forEach>
+								
+								<br><br>
 						</p>
 						
 						
