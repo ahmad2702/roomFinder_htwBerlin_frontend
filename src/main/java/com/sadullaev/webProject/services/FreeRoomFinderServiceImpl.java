@@ -76,50 +76,32 @@ public class FreeRoomFinderServiceImpl implements FreeRoomFinderServiceDAO{
 
 		if(rooms.size() != 0) {
 			
+			//Anpassung der Zeiten
 			String dateAndUhr = date + " " + uhr;
 			LocalDateTime uhrForFilter = LocalDateTime.parse(dateAndUhr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-			/**
-			// Filter nach Zeit
-			rooms = rooms.stream().filter(x -> x.getBeginTime().getTime()<= Timestamp.valueOf(uhrForFilter).getTime() &&
-					x.getEndTime().getTime()>= Timestamp.valueOf(uhrForFilter).getTime()).collect(Collectors.toList());
-			*/
-			
-			//Check alles with bookings
-			int timeAsIntAndInMiliseconds = Integer.parseInt(time) * 60000;
-			//old rooms.stream().forEach(x -> x.setEndTime(new Timestamp(x.getBeginTime().getTime() + timeAsIntAndInMiliseconds)));
 
-			rooms.stream().forEach(x -> x.setBeginAndEndTime(getZeiten(x, date, uhr, timeAsIntAndInMiliseconds)) );
-			
+			int timeAsIntAndInMiliseconds = Integer.parseInt(time) * 60000;
+			rooms.stream().forEach(x -> x.setBeginAndEndTime(getAngepassteZeiten(x, date, Timestamp.valueOf(uhrForFilter), timeAsIntAndInMiliseconds)) );
 			rooms = rooms.stream().filter(x -> (Timestamp.valueOf(uhrForFilter).getTime()+timeAsIntAndInMiliseconds)<=x.getEndTime().getTime()).collect(Collectors.toList());
 		}
 		
 		return rooms;
 	}
 	
-	private Timestamp[] getZeiten(Room room, String date, String uhr, int time) {
-		String dateAndUhr = date + " " + uhr;
-		LocalDateTime uhrForFilter = LocalDateTime.parse(dateAndUhr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-		
-		Date dateAsDate = Date.valueOf(date);
-		
+	private Timestamp[] getAngepassteZeiten(Room room, String date, Timestamp uhr, int time) {
 		Timestamp[] result = new Timestamp[2];
-		
-		
+
 		Timestamp beginTime = null;
 		Timestamp endTime = null;
 		
-		if(Timestamp.valueOf(uhrForFilter).getTime()>=room.getBeginTime().getTime() && (Timestamp.valueOf(uhrForFilter).getTime()+time) <= room.getEndTime().getTime()) {
-			beginTime = Timestamp.valueOf(uhrForFilter);
+		if(uhr.getTime()>=room.getBeginTime().getTime() && (uhr.getTime()+time) <= room.getEndTime().getTime()) {
+			beginTime = uhr;
 		}else {
 			beginTime = room.getBeginTime();
 		}
 		
 		endTime = new Timestamp(beginTime.getTime() + time);
-		
-		
-		
-		List<BookingList> b = (List<BookingList>) bookingRepository.findAllByDateAndRoom(dateAsDate, room.getRoomName());
-		
+
 		result[0] = beginTime;
 		result[1] = endTime;
 		
