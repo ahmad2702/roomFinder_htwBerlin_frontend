@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.sadullaev.webProject.form.addUserToRoom.AddUserToBooking;
+import com.sadullaev.webProject.form.editBooking.UserOperation;
 import com.sadullaev.webProject.form.freeRooms.Room;
 import com.sadullaev.webProject.model.BookingList;
 import com.sadullaev.webProject.model.User;
@@ -41,15 +41,15 @@ public class MyListController {
 	}
 	
 	
+	//-----------------------------Bearbeitung START------------------------------------------------------
 	@RequestMapping("/myList/edit")
 	String editPageRedirect(ModelMap model) {
 		return "redirect:/myList";
 	}
+
 	
-	
-	//-----------------------------Bearbeitung START------------------------------------------------------
 		@RequestMapping(value = "/myList/edit", method = RequestMethod.POST)
-	    public String save(@Valid @ModelAttribute("bookRoomForm") Room room,
+	    public String openEditPage(@Valid @ModelAttribute("bookRoomForm") Room room,
 	    		ModelMap model) {
 			
 			int id = room.getId();
@@ -57,34 +57,46 @@ public class MyListController {
 			
 			BookingList booking = bookingRepository.findById(id).get();
 			model.addAttribute("booking", booking); 
-			model.addAttribute("addUser", new AddUserToBooking());
+			model.addAttribute("addUser", new UserOperation());
+			model.addAttribute("removeUser", new UserOperation());
 			
 			return "edit_booking";
 		}
+
+		//-------------------------------Bearbeitung END----------------------------------------------------
 		
-		//-------------------------------BELEGUNG END----------------------------------------------------
 		
+		
+		
+		
+		
+		
+		
+		
+		//-----------------------------Add User START------------------------------------------------------
 		@RequestMapping("/myList/edit/addUser")
 		String addUserRedirect(ModelMap model) {
 			return "redirect:/myList";
 		}
 		
 		@RequestMapping(value = "/myList/edit/addUser", method = RequestMethod.POST)
-	    public String addUser(@Valid @ModelAttribute("addUser") AddUserToBooking addUserToBooking,
+	    public String addUser(@Valid @ModelAttribute("addUser") UserOperation addUserToBooking,
 	    		ModelMap model) {
 			
 			String username = addUserToBooking.getUsername();
-			System.out.println("Username: " + username);
 			User newUser = userRepository.findByUsername(username); 
 			
 			
 			int id = addUserToBooking.getBookingId();
 			BookingList booking = bookingRepository.findById(id).get();
 			
+			
 			if(newUser != null) {
-				if(booking.getUsers().stream().filter(x -> x.getUsername().equals(username)).findFirst().get() == null) {
+				if(booking.getUsers().stream().filter(x -> x.getUsername().equals(username)).findFirst().orElse(null) == null) {
 					booking.addUser(newUser);
-				bookingRepository.save(booking);
+					bookingRepository.save(booking);
+					//booking = bookingRepository.findById(id).get();
+					System.out.println("Refreshed booking Edit");
 				}
 			}else {
 				// user existiert nicht
@@ -94,9 +106,49 @@ public class MyListController {
 			
 			
 			model.addAttribute("booking", booking); 
-			model.addAttribute("addUser", new AddUserToBooking());
+			model.addAttribute("addUser", new UserOperation());
+			model.addAttribute("removeUser", new UserOperation());
 			
 			return "edit_booking";
 		}
+		//-----------------------------Add User END------------------------------------------------------
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//-----------------------------Remove User START------------------------------------------------------
+		@RequestMapping("/myList/edit/removeUser")
+		String removeUserRedirect(ModelMap model) {
+			return "redirect:/myList";
+		}
+		
+		@RequestMapping(value = "/myList/edit/removeUser", method = RequestMethod.POST)
+	    public String removeUser(@Valid @ModelAttribute("removeUser") UserOperation removeUserFromBooking,
+	    		ModelMap model) {
+			
+			int userId = removeUserFromBooking.getUserId();
+			int bookingId = removeUserFromBooking.getBookingId();
+			
+			BookingList booking = bookingRepository.findById(bookingId).get();
+			
+			
+			model.addAttribute("booking", booking); 
+			model.addAttribute("addUser", new UserOperation());
+			model.addAttribute("removeUser", new UserOperation());
+			
+			return "edit_booking";
+		}
+		
+		
+		
+		
+		
+		
+		//-----------------------------Remove User END------------------------------------------------------
 		
 }

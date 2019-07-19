@@ -89,9 +89,21 @@
 								<br>
 								
 								<c:forEach var="user" items="${booking.users}">
-									${user.firstname} ${user.lastname} (${user.username})
+									<form:form action="edit/removeUser" method="POST" modelAttribute="removeUser">
+										<form:input path="bookingId" type="hidden" value="${booking.id}" />
+										<form:input path="userId" type="hidden" value="${user.id}" />
+										
+										${user.firstname} ${user.lastname} (${user.username})
+										
+										<input type="submit" value="remove">
+									</form:form>
 									<br>
 								</c:forEach>
+								
+								<br><br><br>
+								
+								
+								
 								
 								<form:form action="edit/addUser" method="POST" modelAttribute="addUser">
 										<form:input path="bookingId" type="hidden" value="${booking.id}" />

@@ -94,7 +94,7 @@
 										  		<form:form action="myList/edit" method="POST" modelAttribute="bookRoomForm">
 										  			<form:input path="id" type="hidden" value="${element.id}" />
 										  			
-										  			<input type="submit" class="btn btn-secondary btn-sm" value="speichern">
+										  			<input type="submit" class="btn btn-secondary btn-sm" value="bearbeiten">
 										  		</form:form>
 												
 										  </td>
