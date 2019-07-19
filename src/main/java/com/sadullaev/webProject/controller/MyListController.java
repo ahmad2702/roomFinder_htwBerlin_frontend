@@ -45,13 +45,13 @@ public class MyListController {
 			System.out.println("Edit booking by ID: " + id);
 			
 			BookingList booking = bookingRepository.findById(id);
+			model.addAttribute("booking", booking); 
 			
-			return "redirect:/myList";
+			return "edit_booking";
 		}
 		
-		
-		
 		//-------------------------------BELEGUNG END----------------------------------------------------
+
 		
-	
+		
 }

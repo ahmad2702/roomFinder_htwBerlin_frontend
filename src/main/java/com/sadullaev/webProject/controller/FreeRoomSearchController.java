@@ -150,7 +150,7 @@ public class FreeRoomSearchController {
     public String save(@Valid @ModelAttribute("bookRoomForm") Room room,
     		ModelMap model) {
 		
-		java.sql.Date date = room.getDate();		
+		java.sql.Date date = room.getDate();
 		String roomName = room.getRoomName();
 		Timestamp begin = room.getBeginTime();
 		Timestamp end = room.getEndTime();

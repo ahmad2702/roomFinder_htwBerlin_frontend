@@ -1,8 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>    
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 
@@ -42,10 +41,10 @@
           <li class="nav-item">
             <a class="nav-link" href="<c:url value="/search" />">Search</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="<c:url value="/myList" />">Meine Liste</a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="<c:url value="/account" />">Mein Profil</a>
           </li>
           <li class="nav-item">
@@ -63,30 +62,44 @@
 	<!-- Page Content -->
 	<div class="container">
 	    <div class="row">
-	        <div class="col-lg-12">
-	            <div class="well well-sm">
-	                <div class="row">
-	
-	                    <div class="col-lg-12 col-md-8">
-							<br><br><br>
-	                        
-							<h3 class="text-center">
-	                            ${user.firstname} ${user.lastname}
-							</h3>
-	                        <br>
-
-							
-	                        <p>
-								Email: ${user.username}@htw-berlin.de
+			
+			<div class="col-lg-12 text-left">
+					<div class="col-lg-12 text-left">
+						
+						<h3 class="mt-5">
+							Edit Booking
+						</h3>
+						<br><br><br>
+						
+						
+						<p>
+								Room: ${booking.room}
 								<br><br>
 	                            
-								Geburtstag: n/a
+	                            Datum: <fmt:formatDate value="${booking.date}" type="date" pattern="dd.MM.yyyy"/>
 								<br><br>
-							</p>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
+								
+								Begin: <fmt:formatDate value="${booking.begin}" type="date" pattern="HH:mm"/>
+								<br><br>
+								
+								End: <fmt:formatDate value="${booking.end}" type="date" pattern="HH:mm"/>
+								<br><br>
+						</p>
+						
+						
+					</div>	
+		  	</div>	
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 	    </div>
 	</div>
 	
