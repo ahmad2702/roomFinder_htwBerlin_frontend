@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 
@@ -76,19 +77,29 @@
 								  <th scope="col">Raum</th>
 								  <th scope="col">Von</th>
 								  <th scope="col">Bis</th>
+								  <th scope="col">status</th>
 								  <th scope="col">Action</th>
 								</tr>
 							</thead>
 							<tbody>
-	
+									<c:forEach var="element" items="${booking_list}">
 										<tr>
-										  <td>15.05.2019</td>
-										  <td>WH C 613</td>
-										  <td>11:00</td>
-										  <td>12:00</td>
-										  <td><button type="button" class="btn btn-secondary btn-sm">remove</button></td>
+										  <td><fmt:formatDate value="${element.date}" type="date" pattern="dd.MM.yyyy"/></td>
+										  <td>${element.room}</td>
+										  <td><fmt:formatDate value="${element.begin}" type="date" pattern="HH:mm"/></td>
+										  <td><fmt:formatDate value="${element.end}" type="date" pattern="HH:mm"/></td>
+										  <td>${element.status}</td>
+										  <td>
+										  		
+										  		<form:form action="myList/edit" method="POST" modelAttribute="bookRoomForm">
+										  			<form:input path="id" type="hidden" value="${element.id}" />
+										  			
+										  			<input type="submit" class="btn btn-secondary btn-sm" value="speichern">
+										  		</form:form>
+												
+										  </td>
 										</tr>
-	
+									</c:forEach>
 							</tbody> 
 						</table>
 					</div>	

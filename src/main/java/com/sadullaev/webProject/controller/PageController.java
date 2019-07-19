@@ -16,11 +16,6 @@ public class PageController {
 		return "searchpage";
 	}
 	
-	@RequestMapping("/myList")
-	String liste() {
-		
-		return "my_list";
-	}
 
 	
 	

@@ -1,6 +1,7 @@
 package com.sadullaev.webProject.model;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -30,6 +31,12 @@ public class User implements UserDetails {
 	@Column(name = "password")
     private String password;
 	
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@JoinTable(name = "booking_users_mapping", joinColumns = {
+			@JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = {
+					@JoinColumn(name = "booking_id", referencedColumnName = "id") })
+	private List<BookingList> bookingList;
+
 	public User() {
 		
 	}
@@ -40,6 +47,16 @@ public class User implements UserDetails {
 		this.lastname = lastname;
 		this.username = username;
 		this.password = password;
+	}
+	
+	
+
+	public User(String firstname, String lastname, String username, String password, List<BookingList> bookingList) {
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.username = username;
+		this.password = password;
+		this.bookingList = bookingList;
 	}
 
 	public int getId() {
@@ -80,6 +97,16 @@ public class User implements UserDetails {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	
+
+	public List<BookingList> getBookingList() {
+		return bookingList;
+	}
+
+	public void setBookingList(List<BookingList> bookingList) {
+		this.bookingList = bookingList;
 	}
 
 	@Override

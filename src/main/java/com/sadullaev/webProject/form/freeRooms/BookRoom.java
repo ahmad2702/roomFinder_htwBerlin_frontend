@@ -2,11 +2,19 @@ package com.sadullaev.webProject.form.freeRooms;
 
 public class BookRoom {
 	
+	private String id;
 	private String date;
 	private String room;
 	private String begin;
 	private String end;
 	
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getDate() {
 		return date;
 	}
