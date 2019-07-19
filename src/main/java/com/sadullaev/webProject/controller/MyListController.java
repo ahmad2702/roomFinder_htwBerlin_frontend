@@ -1,5 +1,7 @@
 package com.sadullaev.webProject.controller;
 
+import java.util.ArrayList;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +51,7 @@ public class MyListController {
 			int id = room.getId();
 			System.out.println("Edit booking by ID: " + id);
 			
-			BookingList booking = bookingRepository.findById(id);
+			BookingList booking = bookingRepository.findById(id).get();
 			model.addAttribute("booking", booking); 
 			model.addAttribute("addUser", new AddUserToBooking());
 			
@@ -68,9 +70,10 @@ public class MyListController {
 			
 			
 			int id = addUserToBooking.getBookingId();
-			BookingList booking = bookingRepository.findById(id);
+			BookingList booking = bookingRepository.findById(id).get();
 			
 			if(newUser != null) {
+				//booking.setUsers(new ArrayList<User>());
 				booking.addUser(newUser);
 				bookingRepository.save(booking);
 			}

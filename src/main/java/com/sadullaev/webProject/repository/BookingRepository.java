@@ -11,9 +11,9 @@ import com.sadullaev.webProject.model.BookingList;
 @Repository
 public interface BookingRepository extends CrudRepository<BookingList, Integer>{
 	
-	BookingList findById(int id);
+	//BookingList findById(int id);
 	
 	List<BookingList> findAllByDateAndRoom(Date date, String room);
-
+	
 	
 }
