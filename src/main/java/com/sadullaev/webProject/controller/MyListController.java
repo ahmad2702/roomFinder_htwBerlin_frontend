@@ -73,7 +73,6 @@ public class MyListController {
 			BookingList booking = bookingRepository.findById(id).get();
 			
 			if(newUser != null) {
-				//booking.setUsers(new ArrayList<User>());
 				booking.addUser(newUser);
 				bookingRepository.save(booking);
 			}
