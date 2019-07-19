@@ -1,5 +1,6 @@
 package com.sadullaev.webProject.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -107,6 +108,14 @@ public class User implements UserDetails {
 
 	public void setBookingList(List<BookingList> bookingList) {
 		this.bookingList = bookingList;
+	}
+	
+	public void addBooking(BookingList booking) {
+		if(bookingList==null || bookingList.size()==0) {
+			bookingList = new ArrayList<BookingList>();
+		}
+		
+		bookingList.add(booking);
 	}
 
 	

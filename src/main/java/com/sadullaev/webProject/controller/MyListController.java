@@ -25,7 +25,7 @@ public class MyListController {
 	String liste(ModelMap model) {
 		
 		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		
+				
 		model.addAttribute("booking_list", user.getBookingList());
 		model.addAttribute("bookRoomForm", new Room()); 
 		
@@ -42,10 +42,9 @@ public class MyListController {
 	    		ModelMap model) {
 			
 			int id = room.getId();
-			System.out.println(id);
+			System.out.println("Edit booking by ID: " + id);
 			
 			BookingList booking = bookingRepository.findById(id);
-			System.out.println(booking);
 			
 			return "redirect:/myList";
 		}

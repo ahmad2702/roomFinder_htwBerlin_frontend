@@ -163,7 +163,9 @@ public class FreeRoomSearchController {
 		booking.setStatus("ok");
 		
 		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		user.addBooking(booking);
 		booking.addUser(user);
+		
 		
 		bookingRepository.save(booking);
 		
