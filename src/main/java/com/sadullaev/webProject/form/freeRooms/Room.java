@@ -63,6 +63,11 @@ public class Room {
 	public void setEndTime(Timestamp endTime) {
 		this.endTime = endTime;
 	}
+	
+	public void setBeginAndEndTime(Timestamp[] times) {
+		this.beginTime = times[0];
+		this.endTime = times[1];
+	}
 
 	public int getTime() {
 		return time;
