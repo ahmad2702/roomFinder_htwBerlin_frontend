@@ -32,7 +32,8 @@ public class MyListController {
 	String liste(ModelMap model) {
 		
 		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-				
+		user = userRepository.findById(user.getId()).get();
+		
 		model.addAttribute("booking_list", user.getBookingList());
 		model.addAttribute("bookRoomForm", new Room()); 
 		
