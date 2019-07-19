@@ -81,7 +81,7 @@
 						<div class="input-group-prepend">
 						    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
 						 </div>
-						<input type="text" class="form-control" name="j_username" placeholder="Username" required autofocus value="s0111001">
+						<input type="text" class="form-control" name="j_username" placeholder="Username" required autofocus value="s0111002">
 					</div> <!-- input-group.// -->
 				</div> <!-- form-group// -->
 				

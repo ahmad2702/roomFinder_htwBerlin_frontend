@@ -1,4 +1,4 @@
-package com.sadullaev.webProject.services;
+package com.sadullaev.webProject.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

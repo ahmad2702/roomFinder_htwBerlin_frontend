@@ -109,9 +109,12 @@ public class User implements UserDetails {
 		this.bookingList = bookingList;
 	}
 
+	
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + "]";
+		return "User [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", username=" + username
+				+ ", password=" + password + ", bookingList=" + bookingList + "]";
 	}
 
 	@Override
