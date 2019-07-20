@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("j_username")
                 .passwordParameter("j_password")
                 // даем доступ к форме логина всем
-                .defaultSuccessUrl("/account")
+                .defaultSuccessUrl("/search")
                 .permitAll();
 
         http.logout()

@@ -66,7 +66,7 @@
 			
 			<div class="col-lg-12 text-left">
 			
-				<h1 class="mt-5">SUCHMASCHINE für Event</h1>
+				<h1 class="mt-5">SUCHMASCHINE: Module</h1>
 		        <p class="lead">Bitte fülle die folgenden Felder aus:</p>
 
 			</div>

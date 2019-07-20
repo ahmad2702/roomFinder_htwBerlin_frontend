@@ -66,7 +66,7 @@
 			
 			<div class="col-lg-12 text-left">
 			
-				<h1 class="mt-5">SUCHMASCHINE für Free Room</h1>
+				<h1 class="mt-5">SUCHMASCHINE: Freie Räume</h1>
 		        <p class="lead">Bitte fülle die folgenden Felder aus:</p>
 
 			</div>
@@ -83,7 +83,7 @@
 						  <div class="input-group-prepend">
 							<span class="input-group-text" id="inputGroup-sizing-sm">Datum* : </span>
 						  </div>
-						  <form:input path="date" type="date" class="form-control form-control-sm" value="${currentDate}" required="required"/>
+						  <form:input path="date" type="date" class="form-control form-control-sm" min="${currentDate}" value="${currentDate}" required="required"/>
 					</div>
 					
 					<div class="input-group input-group-sm mb-3">
