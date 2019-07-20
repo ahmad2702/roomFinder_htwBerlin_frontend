@@ -1,7 +1,5 @@
 package com.sadullaev.webProject.controller;
 
-import java.util.ArrayList;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sadullaev.webProject.form.editBooking.UserOperation;
 import com.sadullaev.webProject.form.freeRooms.Room;
@@ -43,8 +42,19 @@ public class MyListController {
 	
 	//-----------------------------Bearbeitung START------------------------------------------------------
 	@RequestMapping("/myList/edit")
-	String editPageRedirect(ModelMap model) {
-		return "redirect:/myList";
+	String editPageRedirect(@ModelAttribute("booking") BookingList booking,
+			ModelMap model) {
+		
+		if(booking.getRoom() != null) {
+			model.addAttribute("booking", booking); 
+			model.addAttribute("addUser", new UserOperation());
+			model.addAttribute("removeUser", new UserOperation());
+			return "edit_booking";
+		}else {
+			return "redirect:/myList";
+		}
+		
+		
 	}
 
 	
@@ -81,6 +91,7 @@ public class MyListController {
 		
 		@RequestMapping(value = "/myList/edit/addUser", method = RequestMethod.POST)
 	    public String addUser(@Valid @ModelAttribute("addUser") UserOperation addUserToBooking,
+	    		final RedirectAttributes redirectAttributes,
 	    		ModelMap model) {
 			
 			String username = addUserToBooking.getUsername();
@@ -103,13 +114,13 @@ public class MyListController {
 			}
 
 
-			
-			
 			model.addAttribute("booking", booking); 
 			model.addAttribute("addUser", new UserOperation());
 			model.addAttribute("removeUser", new UserOperation());
 			
-			return "edit_booking";
+			redirectAttributes.addFlashAttribute("booking", booking);
+			
+			return "redirect:/myList/edit";
 		}
 		//-----------------------------Add User END------------------------------------------------------
 		
@@ -129,6 +140,7 @@ public class MyListController {
 		
 		@RequestMapping(value = "/myList/edit/removeUser", method = RequestMethod.POST)
 	    public String removeUser(@Valid @ModelAttribute("removeUser") UserOperation removeUserFromBooking,
+	    		final RedirectAttributes redirectAttributes,
 	    		ModelMap model) {
 			
 			int userId = removeUserFromBooking.getUserId();
@@ -136,12 +148,14 @@ public class MyListController {
 			
 			BookingList booking = bookingRepository.findById(bookingId).get();
 			
-			
+				
 			model.addAttribute("booking", booking); 
 			model.addAttribute("addUser", new UserOperation());
 			model.addAttribute("removeUser", new UserOperation());
 			
-			return "edit_booking";
+			redirectAttributes.addFlashAttribute("booking", booking);
+			
+			return "redirect:/myList/edit";
 		}
 		
 		
