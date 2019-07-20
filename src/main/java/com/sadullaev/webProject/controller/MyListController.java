@@ -1,5 +1,7 @@
 package com.sadullaev.webProject.controller;
 
+import java.util.stream.Collectors;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,9 +65,10 @@ public class MyListController {
 	    		ModelMap model) {
 			
 			int id = room.getId();
-			System.out.println("Edit booking by ID: " + id);
-			
 			BookingList booking = bookingRepository.findById(id).get();
+			
+			
+			
 			model.addAttribute("booking", booking); 
 			model.addAttribute("addUser", new UserOperation());
 			model.addAttribute("removeUser", new UserOperation());
@@ -113,10 +116,6 @@ public class MyListController {
 				// user existiert nicht
 			}
 
-
-			model.addAttribute("booking", booking); 
-			model.addAttribute("addUser", new UserOperation());
-			model.addAttribute("removeUser", new UserOperation());
 			
 			redirectAttributes.addFlashAttribute("booking", booking);
 			
@@ -148,10 +147,9 @@ public class MyListController {
 			
 			BookingList booking = bookingRepository.findById(bookingId).get();
 			
-				
-			model.addAttribute("booking", booking); 
-			model.addAttribute("addUser", new UserOperation());
-			model.addAttribute("removeUser", new UserOperation());
+			booking.setUsers(booking.getUsers().stream().filter(x -> x.getId() != userId).collect(Collectors.toList()));
+			bookingRepository.save(booking);
+
 			
 			redirectAttributes.addFlashAttribute("booking", booking);
 			
