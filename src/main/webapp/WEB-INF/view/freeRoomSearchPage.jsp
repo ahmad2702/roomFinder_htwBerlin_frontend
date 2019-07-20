@@ -201,15 +201,7 @@
 	
 	
 	
-	
-	
-	  <!-- Footer -->
-	  <footer class="py-3 bg-dark fixed-bottom">
-	    <div class="container">
-	      <p class="m-0 text-center text-white">HTW Berlin &copy; Room Finder 2019</p>
-	    </div>
-	    <!-- /.container -->
-	  </footer>
+
 	
 	  <!-- Bootstrap core JavaScript -->
 	  <script src="<c:url value="/" />resources/jquery/jquery.slim.min.js"></script>
