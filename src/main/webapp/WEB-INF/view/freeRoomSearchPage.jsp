@@ -88,7 +88,7 @@
 					
 					<div class="input-group input-group-sm mb-3">
 						  <div class="input-group-prepend">
-							<span class="input-group-text" id="inputGroup-sizing-sm">Zeituhr* : </span>
+							<span class="input-group-text" id="inputGroup-sizing-sm">Zeit* : </span>
 						  </div>
 						  		<form:select path="uhr" class="form-control form-control-sm">
 								         	<c:forEach var="i" items="${zeituhr}">
@@ -113,7 +113,7 @@
 						  <div class="input-group-prepend">
 							<span class="input-group-text" id="inputGroup-sizing-sm">Raum: </span>
 						  </div>
-						  <form:input path="room" type="text" class="form-control form-control-sm" placeholder="(optional)" />
+						  <form:input path="room" type="text" class="form-control form-control-sm" placeholder="z.B. C 624 oder 624 oder WH Gebäude C 624" />
 					</div>
 					
 					
@@ -121,7 +121,7 @@
 						  <div class="input-group-prepend">
 							<span class="input-group-text" id="inputGroup-sizing-sm">Ergebnisanzahl* : </span>
 						  </div>
-						  <form:input path="number" type="number" class="form-control form-control-sm" min="1" max="100" placeholder="von 1 bis 100" required="required" value="15"/>
+						  <form:input path="number" type="number" class="form-control form-control-sm" min="1" max="100" placeholder="von 1 bis 100" required="required" value="50" />
 					</div>
 					
 					<span class="small">

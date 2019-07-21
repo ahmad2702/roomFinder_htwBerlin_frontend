@@ -114,7 +114,7 @@
 					</span> 
 					<br>
 					
-					<input type="submit" class="btn btn-outline-success" value="SUCHEN" onclick="this.form.submit(); this.disabled = true; this.value = 'SUCHEN...';">
+					<input type="submit" class="btn btn-outline-success" value="SUCHEN" onClick="$('button').prop('disabled', true);" />
 					
 				</form:form>
 
