@@ -85,7 +85,7 @@
 								End: <fmt:formatDate value="${booking.end}" type="date" pattern="HH:mm"/>
 								<br><br><br><br>
 								
-								Users: 
+								Users: ${booking.users.size()}
 								<br>
 								
 								<form:form action="edit/addUser" method="POST" modelAttribute="addUser">
@@ -97,25 +97,30 @@
 								<br><br>
 							
 								
-									<form:form action="edit/removeUser" method="POST" modelAttribute="removeUser">
-										<c:forEach var="user" items="${booking.users}">
-											
-											<c:if test="${user.id}=='2'">
-												yeeees
-											</c:if>
-											
-											<form:input path="bookingId" type="hidden" value="${booking.id}" />
-											<form:input path="userId" type="hidden" value="${user.id}" />
-											
-											${user.firstname} ${user.lastname} (${user.username}) 
-											
-											<input type="submit" value="remove">
-											<br>
-										
-										</c:forEach>
-									</form:form>
-									<br>
 								
+								<c:forEach var="user" items="${booking.users}">
+									<form:form action="edit/removeUser" method="POST" modelAttribute="removeUser">
+										<c:if test="${(user.id eq currentUser.id)==false}">
+												<form:input path="bookingId" type="hidden" value="${booking.id}" />
+												<form:input path="userId" type="hidden" value="${user.id}" />
+												
+												${user.firstname} ${user.lastname} (${user.username}) 
+												
+												<input type="submit" value="remove">
+												<br>
+										</c:if>
+									</form:form>
+								</c:forEach>
+								<br><br><br>
+									
+									
+									
+									<form:form action="edit/removeUser" method="POST" modelAttribute="removeUser">
+												<form:input path="bookingId" type="hidden" value="${booking.id}" />
+												<form:input path="userId" type="hidden" value="${currentUser.id}" />
+												<input type="submit" value="Ich möchte diesen Termin verlassen">
+												<br>
+									</form:form>
 								
 								<br><br><br>
 								

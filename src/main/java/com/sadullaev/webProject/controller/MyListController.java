@@ -48,10 +48,15 @@ public class MyListController {
 			ModelMap model) {
 		
 		if(booking.getRoom() != null) {
+			
+			User currentUser = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			
+			model.addAttribute("currentUser", currentUser); 
 			model.addAttribute("booking", booking); 
 			model.addAttribute("addUser", new UserOperation());
 			model.addAttribute("removeUser", new UserOperation());
 			return "edit_booking";
+			
 		}else {
 			return "redirect:/myList";
 		}
@@ -67,8 +72,9 @@ public class MyListController {
 			int id = room.getId();
 			BookingList booking = bookingRepository.findById(id).get();
 			
+			User currentUser = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			
-			
+			model.addAttribute("currentUser", currentUser); 
 			model.addAttribute("booking", booking); 
 			model.addAttribute("addUser", new UserOperation());
 			model.addAttribute("removeUser", new UserOperation());
@@ -147,9 +153,19 @@ public class MyListController {
 			
 			BookingList booking = bookingRepository.findById(bookingId).get();
 			
-			booking.setUsers(booking.getUsers().stream().filter(x -> x.getId() != userId).collect(Collectors.toList()));
-			bookingRepository.save(booking);
+			if(booking.getUsers().size() == 1 && booking.getUsers().get(0).getId()==userId) {
+				bookingRepository.delete(booking);
+				return "redirect:/myList";
+			}else {
+				booking.setUsers(booking.getUsers().stream().filter(x -> x.getId() != userId).collect(Collectors.toList()));
+				bookingRepository.save(booking);
+			}
 
+			User currentUser = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			
+			if(currentUser.getId() == userId) {
+				return "redirect:/myList";
+			}
 			
 			redirectAttributes.addFlashAttribute("booking", booking);
 			
