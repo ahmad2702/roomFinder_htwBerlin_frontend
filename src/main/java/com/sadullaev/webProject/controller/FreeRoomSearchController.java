@@ -95,7 +95,7 @@ public class FreeRoomSearchController {
 		model.addAttribute("currentDate", currentDate); 
 
 		model.addAttribute("dauer", getTimeFormatForDauer(0, 10)); 
-		model.addAttribute("zeituhr", getTimeFormatForZeituhr(7, 20)); 
+		model.addAttribute("uhrzeit", getTimeFormatForZeituhr(7, 20)); 
 		
 		boolean startSearch = true;
 		model.addAttribute("startSearch", startSearch); 
@@ -122,7 +122,7 @@ public class FreeRoomSearchController {
 		model.addAttribute("startSearch", startSearch); 
 		
 		model.addAttribute("dauer", getTimeFormatForDauer(0, 10)); 
-		model.addAttribute("zeituhr", getTimeFormatForZeituhr(7, 20)); 
+		model.addAttribute("uhrzeit", getTimeFormatForZeituhr(7, 20)); 
 		
 		model.addAttribute("bookRoomForm", new Room()); 
 

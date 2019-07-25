@@ -91,7 +91,7 @@
 							<span class="input-group-text" id="inputGroup-sizing-sm">Zeit* : </span>
 						  </div>
 						  		<form:select path="uhr" class="form-control form-control-sm">
-								         	<c:forEach var="i" items="${zeituhr}">
+								         	<c:forEach var="i" items="${uhrzeit}">
 								         			<form:option value="${i}">${i}</form:option>								         		
 								         	</c:forEach>
 							  	</form:select>
