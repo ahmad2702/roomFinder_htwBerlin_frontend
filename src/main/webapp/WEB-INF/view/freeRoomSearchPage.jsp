@@ -163,7 +163,7 @@
 										  			<form:input path="beginTime" type="hidden" value="${room.beginTime}" />
 										  			<form:input path="endTime" type="hidden" value="${room.endTime}" />
 										  			
-										  			<input type="submit" class="btn btn-secondary btn-sm" value="speichern">
+										  			<input type="submit" class="btn btn-secondary btn-sm" value="buchen">
 										  		</form:form>
 										  
 										  </td>
