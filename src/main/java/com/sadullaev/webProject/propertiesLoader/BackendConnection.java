@@ -10,6 +10,10 @@ public class BackendConnection {
 	private static String host;
 	private static String port;
 
+	public BackendConnection() {
+		load();
+	}
+	
 	public static void load() {
 		
 		try {

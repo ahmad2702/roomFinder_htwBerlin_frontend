@@ -18,8 +18,11 @@ public class WebProjectApplication extends SpringBootServletInitializer {
 
 	
 	public static void main(String[] args) {
-		new BackendConnection().load();
+		new BackendConnection();
+		
 		SpringApplication.run(WebProjectApplication.class, args);
+		
+		System.out.println("Started!");
 	}
 
 }
