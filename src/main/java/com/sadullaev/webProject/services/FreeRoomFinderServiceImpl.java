@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,7 +19,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.sadullaev.webProject.form.freeRooms.Room;
-import com.sadullaev.webProject.model.BookingList;
 import com.sadullaev.webProject.propertiesLoader.BackendConnection;
 import com.sadullaev.webProject.repository.BookingRepository;
 
@@ -38,9 +36,8 @@ public class FreeRoomFinderServiceImpl implements FreeRoomFinderServiceDAO{
 		return url;
 	}
 	
-	@Override
-	public List<Room> getRooms(String date, String roomName, String time, String number) {
-		String url = getUrl() + "/rooms/free";
+	public String sendRequestAtBackend(String date, String roomName, String time, String number) {
+String url = getUrl() + "/rooms/free";
 		
 		String json = "";
 		
@@ -63,6 +60,13 @@ public class FreeRoomFinderServiceImpl implements FreeRoomFinderServiceDAO{
 	    } catch (IOException e) {
 			System.out.println("JSON kann nicht abgelesen werden.");
 		} 
+	    
+	    return json;
+	}
+	
+	@Override
+	public List<Room> getRooms(String date, String roomName, String time, String number) {
+		String json = sendRequestAtBackend(date, roomName, time, number);
 				
 	    Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
 		List<Room> rooms = gson.fromJson(json, new TypeToken<List<Room>>(){}.getType());
@@ -88,7 +92,7 @@ public class FreeRoomFinderServiceImpl implements FreeRoomFinderServiceDAO{
 		return rooms;
 	}
 	
-	private Timestamp[] getAngepassteZeiten(Room room, String date, Timestamp uhr, int time) {
+	public Timestamp[] getAngepassteZeiten(Room room, String date, Timestamp uhr, int time) {
 		Timestamp[] result = new Timestamp[2];
 
 		Timestamp beginTime = null;

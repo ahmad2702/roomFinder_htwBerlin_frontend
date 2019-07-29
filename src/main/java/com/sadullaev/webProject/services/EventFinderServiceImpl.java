@@ -28,8 +28,7 @@ public class EventFinderServiceImpl implements EventFinderServiceDAO{
 		return url;
 	}
 	
-	@Override
-	public List<Event> getEvents(String title, String date, String lecturer, String number){
+	public String sendRequestAtBackend(String title, String date, String lecturer, String number) {
 		String url = getUrl() + "/events/finder";
 		
 		String json = "";
@@ -54,7 +53,12 @@ public class EventFinderServiceImpl implements EventFinderServiceDAO{
 			System.out.println("JSON kann nicht abgelesen werden.");
 		} 
 		
-		//System.out.println(json);
+		return json;
+	}
+	
+	@Override
+	public List<Event> getEvents(String title, String date, String lecturer, String number){
+		String json = sendRequestAtBackend(title, date, lecturer, number);
 		
 	    Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
 		List<Event> events = gson.fromJson(json, new TypeToken<List<Event>>(){}.getType());
