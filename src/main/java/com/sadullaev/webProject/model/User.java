@@ -24,8 +24,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Table(name="users")
 public class User implements UserDetails {
 
+	/**
+	 * Version
+	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Instance variables
+	 */
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -49,6 +56,9 @@ public class User implements UserDetails {
 					@JoinColumn(name = "booking_id", referencedColumnName = "id") })
 	private List<BookingList> bookingList;
 
+	/**
+	 * Constructor
+	 */
 	public User() {
 		
 	}
