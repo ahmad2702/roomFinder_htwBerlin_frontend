@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/")
 public class MainController {
 	
+	/**
+	 * Open Home Page
+	 * @return page
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	String index() {
 		return "home";
 	}
 
-	
 }

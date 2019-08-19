@@ -11,15 +11,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/login")
 public class LoginController {
 
+	/**
+	 * Open Login Page
+	 * @param model
+	 * @return page
+	 */
     @RequestMapping(method = RequestMethod.GET)
     public String loginPage(Model model){
-    	
     	if(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken ) {
     		return "login";
     	}else {
     		return "redirect:/account";
     	}
-    	
     }
 
 }

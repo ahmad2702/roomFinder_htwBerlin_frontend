@@ -22,9 +22,12 @@ public class EventSearchController {
 	
 	@Autowired
 	EventFinderServiceDAO eventFinderService;
-		
-	
-	
+
+	/**
+	 * Open Search Event Page
+	 * @param model
+	 * @return page
+	 */
 	@RequestMapping(value="/search/event", method=RequestMethod.GET)
 	String search(Model model) {
 
@@ -36,7 +39,13 @@ public class EventSearchController {
 		return "eventSearchPage";
 	}
 	
-	
+	/**
+	 * Action when button "search" is clicked
+	 * @param searchForm
+	 * @param freeRoomSearchForm
+	 * @param model
+	 * @return page with table
+	 */
 	@RequestMapping(value = "/search/event", method = RequestMethod.POST)
     public String submit(@Valid @ModelAttribute("eventSearchForm") EventSearchForm searchForm, 
     		@Valid @ModelAttribute("freeRoomSearchForm") FreeRoomSearchForm freeRoomSearchForm,

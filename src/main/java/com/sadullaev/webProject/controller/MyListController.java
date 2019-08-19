@@ -23,48 +23,54 @@ import com.sadullaev.webProject.repository.UsersRepository;
 @Controller
 public class MyListController {
 	
-	@Autowired
-	UsersRepository userRepository;
-	
-	@Autowired
-	BookingRepository bookingRepository;
-	
-	@RequestMapping("/myList")
-	String liste(ModelMap model) {
+		@Autowired
+		UsersRepository userRepository;
 		
-		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		user = userRepository.findById(user.getId()).get();
+		@Autowired
+		BookingRepository bookingRepository;
 		
-		model.addAttribute("booking_list", user.getBookingList());
-		model.addAttribute("bookRoomForm", new Room()); 
-		
-		return "my_list";
-	}
-	
-	
-	//-----------------------------Bearbeitung START------------------------------------------------------
-	@RequestMapping("/myList/edit")
-	String editPageRedirect(@ModelAttribute("booking") BookingList booking,
-			ModelMap model) {
-		
-		if(booking.getRoom() != null) {
+		/**
+		 * Open Booking list page
+		 * @param model
+		 * @return page
+		 */
+		@RequestMapping("/myList")
+		String liste(ModelMap model) {
 			
-			User currentUser = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			user = userRepository.findById(user.getId()).get();
 			
-			model.addAttribute("currentUser", currentUser); 
-			model.addAttribute("booking", booking); 
-			model.addAttribute("addUser", new UserOperation());
-			model.addAttribute("removeUser", new UserOperation());
-			return "edit_booking";
+			model.addAttribute("booking_list", user.getBookingList());
+			model.addAttribute("bookRoomForm", new Room()); 
 			
-		}else {
-			return "redirect:/myList";
+			return "my_list";
 		}
 		
 		
-	}
+		
+		
+		//-----------------------------Bearbeitung START------------------------------------------------------
+		@RequestMapping("/myList/edit")
+		String editPageRedirect(@ModelAttribute("booking") BookingList booking,
+				ModelMap model) {
+			
+			if(booking.getRoom() != null) {
+				
+				User currentUser = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+				
+				model.addAttribute("currentUser", currentUser); 
+				model.addAttribute("booking", booking); 
+				model.addAttribute("addUser", new UserOperation());
+				model.addAttribute("removeUser", new UserOperation());
+				return "edit_booking";
+				
+			}else {
+				return "redirect:/myList";
+			}
+			
+			
+		}
 
-	
 		@RequestMapping(value = "/myList/edit", method = RequestMethod.POST)
 	    public String openEditPage(@Valid @ModelAttribute("bookRoomForm") Room room,
 	    		ModelMap model) {
@@ -81,14 +87,8 @@ public class MyListController {
 			
 			return "edit_booking";
 		}
-
 		//-------------------------------Bearbeitung END----------------------------------------------------
-		
-		
-		
-		
-		
-		
+
 		
 		
 		
@@ -129,12 +129,7 @@ public class MyListController {
 		}
 		//-----------------------------Add User END------------------------------------------------------
 		
-		
-		
-		
-		
-		
-		
+
 		
 		
 		//-----------------------------Remove User START------------------------------------------------------
@@ -170,13 +165,7 @@ public class MyListController {
 			redirectAttributes.addFlashAttribute("booking", booking);
 			
 			return "redirect:/myList/edit";
-		}
-		
-		
-		
-		
-		
-		
+		}		
 		//-----------------------------Remove User END------------------------------------------------------
 		
 }

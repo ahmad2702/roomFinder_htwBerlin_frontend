@@ -33,7 +33,7 @@ public class FreeRoomSearchController {
 	@Autowired
 	BookingRepository bookingRepository;
 	
-	//------------------------------------------------------------------------------------
+	//-----Help functions----------------------------------------------------------------
 	List<String> getTimeFormatForDauer(int von, int bis) {
 		List<String> minuten = new ArrayList<String>();
 		minuten.add("00");
@@ -80,6 +80,16 @@ public class FreeRoomSearchController {
 		}
 
 		return result;
+	}
+	
+	String convertStringToDauer(String dauer) {
+		String[] data = dauer.split(":");
+		
+		int hour = Integer.parseInt(data[0]) * 60;
+		int min = Integer.parseInt(data[1]);
+		int sum = hour + min;
+		
+		return "" + sum;
 	}
 	//------------------------------------------------------------------------------------
 
@@ -129,20 +139,7 @@ public class FreeRoomSearchController {
         return "freeRoomSearchPage";
     }
 	//--------------------------------Search END---------------------------------------------------
-	
-	
-	//------------------------------------------------------------------------------------
-	
-	String convertStringToDauer(String dauer) {
-		String[] data = dauer.split(":");
-		
-		int hour = Integer.parseInt(data[0]) * 60;
-		int min = Integer.parseInt(data[1]);
-		int sum = hour + min;
-		
-		return "" + sum;
-	}
-	
+
 	
 	
 	//-----------------------------BELEGUNG START------------------------------------------------------
@@ -171,9 +168,6 @@ public class FreeRoomSearchController {
 		
 		return "redirect:/myList";
 	}
-	
-	
-	
 	//-------------------------------BELEGUNG END----------------------------------------------------
 	
 	
