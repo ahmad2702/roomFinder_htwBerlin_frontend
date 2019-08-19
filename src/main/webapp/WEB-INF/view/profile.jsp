@@ -43,7 +43,7 @@
             <a class="nav-link" href="<c:url value="/search" />">Search</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<c:url value="/myList" />">Meine Liste</a>
+            <a class="nav-link" href="<c:url value="/myList" />">Buchungen</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="<c:url value="/account" />">Mein Profil</a>
@@ -71,17 +71,25 @@
 							<br><br><br>
 	                        
 							<h3 class="text-center">
-	                            ${user.firstname} ${user.lastname}
+	                            Mein Account
 							</h3>
 	                        <br>
 
 							
 	                        <p>
-								Email: ${user.username}@htw-berlin.de
+								<b>Vorname:</b> ${user.firstname}
+								<br><br>
+								
+								<b>Name:</b> ${user.lastname}
+								<br><br>
+								
+								<b>Username:</b> ${user.username}
+								<br><br>
+								
+								<b>Email:</b> ${user.username}@htw-berlin.de
 								<br><br>
 	                            
-								Geburtstag: n/a
-								<br><br>
+								
 							</p>
 	                    </div>
 	                </div>

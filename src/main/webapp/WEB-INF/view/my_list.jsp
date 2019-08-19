@@ -42,7 +42,7 @@
             <a class="nav-link" href="<c:url value="/search" />">Search</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="<c:url value="/myList" />">Meine Liste</a>
+            <a class="nav-link" href="<c:url value="/myList" />">Buchungen</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<c:url value="/account" />">Mein Profil</a>
@@ -67,7 +67,7 @@
 					<div class="col-lg-12 text-center">
 						
 						<h3 class="mt-5">
-							Liste
+							Meine Buchungen
 						</h3>
 						
 						<table class="table table-bordered table-bottom table-top table-responsive-sm">

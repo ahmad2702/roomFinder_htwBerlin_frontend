@@ -45,7 +45,7 @@
 		            <a class="nav-link" href="<c:url value="/search" />">Search</a>
 		        </li>
 		        <li class="nav-item">
-		            <a class="nav-link" href="<c:url value="/myList" />">Meine Liste</a>
+		            <a class="nav-link" href="<c:url value="/myList" />">Buchungen</a>
 		        </li>
 		        <li class="nav-item">
 		            <a class="nav-link" href="<c:url value="/account" />">Mein Profil</a>
@@ -75,10 +75,19 @@
     <div class="row">
       	<div class="col-lg-12 text-left">
 	  
-	        <h1 class="mt-5">STARTPAGE</h1>
+	        <h1 class="mt-5">Willkommen!</h1>
 	        <br>
-	        <p class="lead">Da kommt die Beschreibung ... </p>
-
+	        <p class="lead"><b>Dieses Portal stellt Dir die folgenden Funktionen zur Verfügung: </b></p>
+	        1.  Suchst du den Raum einer bestimmten Veranstaltung? Kein Problem! 
+	            Du kannst schnell den Raum dieser Veranstaltung finden! <br>
+	            
+	        2.  Brauchst du einen freien Raum für eine Gruppenarbeit? Kein Problem!
+	            Du kannst schnell einen Raum finden, belegen und deine Kommilitonen zu deiner Buchung hinzufügen!
+			
+			<br> <br> <br> 
+			
+			<p class="lead"><b>Um diese Suchfunktion benutzen zu können, muss Du angemeldet sein!</b></p>
+			
     	</div>
   	</div>
   </div>
