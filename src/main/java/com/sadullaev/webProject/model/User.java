@@ -63,6 +63,14 @@ public class User implements UserDetails {
 		
 	}
 
+	/**
+	 * Constructor
+	 * @param id
+	 * @param firstname
+	 * @param lastname
+	 * @param username
+	 * @param password
+	 */
 	public User(int id, String firstname, String lastname, String username, String password) {
 		this.id = id;
 		this.firstname = firstname;
@@ -71,8 +79,14 @@ public class User implements UserDetails {
 		this.password = password;
 	}
 	
-	
-
+	/**
+	 * Constructor
+	 * @param firstname
+	 * @param lastname
+	 * @param username
+	 * @param password
+	 * @param bookingList
+	 */
 	public User(String firstname, String lastname, String username, String password, List<BookingList> bookingList) {
 		this.firstname = firstname;
 		this.lastname = lastname;
@@ -81,57 +95,107 @@ public class User implements UserDetails {
 		this.bookingList = bookingList;
 	}
 
+	/**
+	 * Getter function for id
+	 * @return id
+	 */
 	public int getId() {
 		return id;
 	}
 
+	/**
+	 * Setter function for id
+	 * @param id
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	/**
+	 * Getter function for firstname
+	 * @return firstname
+	 */
 	public String getFirstname() {
 		return firstname;
 	}
 
+	/**
+	 * Setter function for firstname
+	 * @param firstname
+	 */
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
 
+	/**
+	 * Getter function for lastname
+	 * @return lastname
+	 */
 	public String getLastname() {
 		return lastname;
 	}
 
+	/**
+	 * Setter function for lastname
+	 * @param lastname
+	 */
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
 
+	/**
+	 * Getter function for username
+	 * @return username
+	 */
 	public String getUsername() {
 		return username;
 	}
 
+	/**
+	 * Setter function for username
+	 * @param username
+	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
+	/**
+	 * Getter function for password
+	 * @return password
+	 */
 	public String getPassword() {
 		return password;
 	}
 
+	/**
+	 * Setter function for password
+	 * @param password
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 	
-	
-
+	/**
+	 * Getter function booking list
+	 * @return booking list
+	 */
 	public List<BookingList> getBookingList() {
 		bookingList.sort(Comparator.comparing(BookingList::getDate).reversed());
 		return bookingList;
 	}
 
+	/**
+	 * Setter function for booking list
+	 * @param bookingList
+	 */
 	public void setBookingList(List<BookingList> bookingList) {
 		this.bookingList = bookingList;
 	}
 	
+	/**
+	 * Function for add new booking 
+	 * @param booking
+	 */
 	public void addBooking(BookingList booking) {
 		if(bookingList==null || bookingList.size()==0) {
 			bookingList = new ArrayList<BookingList>();
@@ -140,13 +204,18 @@ public class User implements UserDetails {
 		bookingList.add(booking);
 	}
 
-	
-
+	/**
+	 * Overrided function for best performance
+	 */
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", username=" + username
 				+ "]";
 	}
+	
+	/*
+	 * Necessary functions from Class UserDetails 
+	 */
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -160,13 +229,11 @@ public class User implements UserDetails {
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
@@ -174,7 +241,5 @@ public class User implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
-	
-	
-	
+
 }

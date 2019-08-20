@@ -20,6 +20,10 @@ import com.google.gson.reflect.TypeToken;
 @Service
 public class EventFinderServiceImpl implements EventFinderServiceDAO{
 
+	/**
+	 * Getter function for url
+	 * @return url
+	 */
 	private static String getUrl() {
 		String url = "http://"
 				+ BackendConnection.getHost()
@@ -28,6 +32,14 @@ public class EventFinderServiceImpl implements EventFinderServiceDAO{
 		return url;
 	}
 	
+	/**
+	 * Function for send the requests to backend
+	 * @param title
+	 * @param date
+	 * @param lecturer
+	 * @param number
+	 * @return response
+	 */
 	public String sendRequestAtBackend(String title, String date, String lecturer, String number) {
 		String url = getUrl() + "/events/finder";
 		
@@ -45,7 +57,6 @@ public class EventFinderServiceImpl implements EventFinderServiceDAO{
 			System.out.println("URL kann nicht geoffnet werden.");
 		}
 	    
-	    
 	    try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))) 
 	    {
 	        json = reader.lines().collect(Collectors.joining("\n"));
@@ -56,17 +67,17 @@ public class EventFinderServiceImpl implements EventFinderServiceDAO{
 		return json;
 	}
 	
+	/**
+	 * Getter function for event from backend
+	 * @return event list
+	 */
 	@Override
 	public List<Event> getEvents(String title, String date, String lecturer, String number){
 		String json = sendRequestAtBackend(title, date, lecturer, number);
 		
 	    Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
 		List<Event> events = gson.fromJson(json, new TypeToken<List<Event>>(){}.getType());
-		//System.out.println("Size: " + events.size());
 		return events;
 	}
-	
 
-
-	
 }

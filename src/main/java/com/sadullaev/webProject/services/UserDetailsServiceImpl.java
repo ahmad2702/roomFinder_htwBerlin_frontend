@@ -15,20 +15,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UsersRepository usersRepository;
 
+    /**
+     * Function for user login
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
         User user = usersRepository.findByUsername(username);
-
-        //Set<GrantedAuthority> roles = new HashSet();
-        //roles.add(new SimpleGrantedAuthority(UserRoleEnum.USER.name()));
-
-        //UserDetails userDetails =
-        //        new org.springframework.security.core.userdetails.User(user.getUsername(), 
-        //                                                               user.getPassword(), 
-       //                                                                roles);
-        
-        
         return user;
     }
 

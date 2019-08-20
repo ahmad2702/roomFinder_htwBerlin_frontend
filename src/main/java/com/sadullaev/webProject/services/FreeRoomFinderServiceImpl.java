@@ -28,6 +28,10 @@ public class FreeRoomFinderServiceImpl implements FreeRoomFinderServiceDAO{
 	@Autowired
 	BookingRepository bookingRepository;
 	
+	/**
+	 * Getter function for url
+	 * @return url
+	 */
 	private static String getUrl() {
 		String url = "http://"
 				+ BackendConnection.getHost()
@@ -36,8 +40,16 @@ public class FreeRoomFinderServiceImpl implements FreeRoomFinderServiceDAO{
 		return url;
 	}
 	
+	/**
+	 * Function for send the requests to backend
+	 * @param date
+	 * @param roomName
+	 * @param time
+	 * @param number
+	 * @return response
+	 */
 	public String sendRequestAtBackend(String date, String roomName, String time, String number) {
-String url = getUrl() + "/rooms/free";
+		String url = getUrl() + "/rooms/free";
 		
 		String json = "";
 		
@@ -53,7 +65,6 @@ String url = getUrl() + "/rooms/free";
 			System.out.println("URL kann nicht geoffnet werden.");
 		}
 	    
-	    
 	    try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))) 
 	    {
 	        json = reader.lines().collect(Collectors.joining("\n"));
@@ -64,6 +75,10 @@ String url = getUrl() + "/rooms/free";
 	    return json;
 	}
 	
+	/**
+	 * Getter function for room list from backend
+	 * @return room list
+	 */
 	@Override
 	public List<Room> getRooms(String date, String roomName, String time, String number) {
 		String json = sendRequestAtBackend(date, roomName, time, number);
@@ -74,13 +89,17 @@ String url = getUrl() + "/rooms/free";
 		return rooms;
 	}
 
+	/**
+	 * Optimized for booking getter function for free rooms 
+	 * @return room list
+	 */
 	@Override
 	public List<Room> getFreeRoomsForBooking(String date, String roomName, String uhr, String time, String number) {
 		List<Room> rooms = getRooms(date, roomName, time, number);
 
 		if(rooms.size() != 0) {
 			
-			//Anpassung der Zeiten
+			//Time optimizing
 			String dateAndUhr = date + " " + uhr;
 			LocalDateTime uhrForFilter = LocalDateTime.parse(dateAndUhr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 
@@ -92,6 +111,14 @@ String url = getUrl() + "/rooms/free";
 		return rooms;
 	}
 	
+	/**
+	 * Function for time optimizing
+	 * @param room
+	 * @param date
+	 * @param uhr
+	 * @param time
+	 * @return time
+	 */
 	public Timestamp[] getAngepassteZeiten(Room room, String date, Timestamp uhr, int time) {
 		Timestamp[] result = new Timestamp[2];
 
@@ -111,8 +138,5 @@ String url = getUrl() + "/rooms/free";
 		
 		return result;
 	}
-	
-	
-	
 
 }

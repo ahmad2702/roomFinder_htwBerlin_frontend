@@ -6,6 +6,11 @@ import com.sadullaev.webProject.model.User;
 
 public interface UsersRepository extends JpaRepository<User, Integer> {
 	
+	/**
+	 * Function to find user into database
+	 * @param username
+	 * @return user
+	 */
     User findByUsername(String username);
     
 }

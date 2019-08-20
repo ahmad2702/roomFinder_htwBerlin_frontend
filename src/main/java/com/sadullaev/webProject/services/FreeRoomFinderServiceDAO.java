@@ -6,10 +6,25 @@ import com.sadullaev.webProject.form.freeRooms.Room;
 
 public interface FreeRoomFinderServiceDAO {
 	
-	// sucht die freie Raueme aus Backend
+	/**
+	 * Function to find free rooms into backend
+	 * @param date
+	 * @param roomName
+	 * @param time
+	 * @param number
+	 * @return rooms
+	 */
 	public List<Room> getRooms(String date, String roomName, String time, String number);
 	
-	// optimisiert fur die Belegung in Frontend
+	/**
+	 * Optimized function to generate free rooms for booking
+	 * @param date
+	 * @param roomName
+	 * @param uhr
+	 * @param time
+	 * @param number
+	 * @return rooms
+	 */
 	public List<Room> getFreeRoomsForBooking(String date, String roomName, String uhr, String time, String number);
 	
 }
