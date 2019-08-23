@@ -81,7 +81,7 @@
 						<div class="input-group-prepend">
 						    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
 						 </div>
-						<input type="text" class="form-control" name="j_username" placeholder="Username" required autofocus value="s0111002">
+						<input type="text" class="form-control" name="j_username" placeholder="Username" required autofocus value="">
 					</div> <!-- input-group.// -->
 				</div> <!-- form-group// -->
 				
@@ -90,7 +90,7 @@
 						<div class="input-group-prepend">
 						    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 						 </div>
-					    <input type="password" class="form-control" name="j_password" placeholder="Password" required value="123456789">
+					    <input type="password" class="form-control" name="j_password" placeholder="Password" required value="">
 					</div> <!-- input-group.// -->
 				</div> <!-- form-group// -->
 				
