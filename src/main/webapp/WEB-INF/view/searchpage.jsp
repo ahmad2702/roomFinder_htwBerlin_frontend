@@ -16,46 +16,46 @@
   <title>HTW Berlin | Room Finder</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<c:url value="/" />resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   
   <!-- Custom core CSS -->
-  <link href="/resources/css/navbar_custom.css" rel="stylesheet">
-  <link href="/resources/css/position_custom.css" rel="stylesheet">
+  <link href="<c:url value="/" />resources/css/navbar_custom.css" rel="stylesheet">
+  <link href="<c:url value="/" />resources/css/position_custom.css" rel="stylesheet">
 
   <!-- Favicon -->
-  <link rel="shortcut icon" href="/resources/images/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="<c:url value="/" />resources/images/favicon.ico" type="image/x-icon">
   
 </head>
 
 <body>
 	
-	  <!-- Navigation -->
-	  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom static-top">
-	    <div class="container">
-	      <a class="navbar-brand" href="/">HTW Berlin | Room Finder</a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="navbar-toggler-icon"></span>
-	      </button>
-	      <div class="collapse navbar-collapse" id="navbarResponsive">
-	        <ul class="navbar-nav ml-auto">
-	          
-	          <li class="nav-item active">
-	            <a class="nav-link" href="/search">Search</a>
-	          </li>
-	          <li class="nav-item">
-	            <a class="nav-link" href="/myList">Meine Liste</a>
-	          </li>
-	          <li class="nav-item">
-	            <a class="nav-link" href="/account">Mein Profil</a>
-	          </li>
-	          <li class="nav-item">
-	            <a class="nav-link" href="#">LOGOUT</a>
-	          </li>
-	          
-	        </ul>
-	      </div>
-	    </div>
-	  </nav>
+	<!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom static-top">
+    <div class="container">
+      <a class="navbar-brand" href="<c:url value="/" />">HTW Berlin | Room Finder</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item active">
+            <a class="nav-link" href="<c:url value="/search" />">Search</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<c:url value="/myList" />">Buchungen</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<c:url value="/account" />">Mein Profil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<c:url value="/logout" />">LOGOUT</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
 	
 	
 	
@@ -67,25 +67,25 @@
 			<div class="col-lg-12 text-center">
 				
 
-		            <a href="/search/event" class="btn btn-outline-success" role="button" aria-pressed="true" style="
+		            <a href="<c:url value="/search/event" />" class="btn btn-outline-success" role="button" aria-pressed="true" style="
 		            margin:100px auto;
 					display: flex;
 					flex-direction: column;
 					justify-content: center;
 					height: 100px;
 					overflow: auto;">
-		            	Ich suche einen Modul
+		            	- ICH SUCHE EIN BESTIMMTES RAUM EINER VERANSTALTUNG -
 		            </a>
 
 
-		            <a href="/search/freeRoom" class="btn btn-outline-danger" role="button" aria-pressed="true" style="
+		            <a href="<c:url value="/search/freeRoom" />" class="btn btn-outline-danger" role="button" aria-pressed="true" style="
 		            margin:100px auto;
 					display: flex;
 					flex-direction: column;
 					justify-content: center;
 					height: 100px;
 					overflow: auto;">
-		            	Ich suche einen freien Raum
+		            	- ICH SUCHE EINEN FREIEN RAUM -
 		            </a>
 
 
@@ -99,21 +99,11 @@
 	
 	
 	
-	
-	
-	
-	
-	  <!-- Footer -->
-	  <footer class="py-3 bg-dark fixed-bottom">
-	    <div class="container">
-	      <p class="m-0 text-center text-white">HTW Berlin &copy; Room Finder 2019</p>
-	    </div>
-	    <!-- /.container -->
-	  </footer>
+
 	
 	  <!-- Bootstrap core JavaScript -->
-	  <script src="/resources/jquery/jquery.slim.min.js"></script>
-	  <script src="/resources/bootstrap/js/bootstrap.bundle.min.js"></script>
+	  <script src="<c:url value="/" />resources/jquery/jquery.slim.min.js"></script>
+	  <script src="<c:url value="/" />resources/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	
 </body>

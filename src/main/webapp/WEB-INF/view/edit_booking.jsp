@@ -64,44 +64,70 @@
 	    <div class="row">
 			
 			<div class="col-lg-12 text-left">
-					<div class="col-lg-12 text-center">
+					<div class="col-lg-12 text-left">
 						
 						<h3 class="mt-5">
-							Meine Buchungen
+							Edit Booking
 						</h3>
+						<br><br><br>
 						
-						<table class="table table-bordered table-bottom table-top table-responsive-sm">
-							<thead>
-								<tr>
-								  <th scope="col">Datum</th>
-								  <th scope="col">Raum</th>
-								  <th scope="col">Von</th>
-								  <th scope="col">Bis</th>
-								  <th scope="col">status</th>
-								  <th scope="col">Action</th>
-								</tr>
-							</thead>
-							<tbody>
-									<c:forEach var="element" items="${booking_list}">
-										<tr>
-										  <td><fmt:formatDate value="${element.date}" type="date" pattern="dd.MM.yyyy"/></td>
-										  <td>${element.room}</td>
-										  <td><fmt:formatDate value="${element.begin}" type="date" pattern="HH:mm"/></td>
-										  <td><fmt:formatDate value="${element.end}" type="date" pattern="HH:mm"/></td>
-										  <td>${element.status}</td>
-										  <td>
-										  		
-										  		<form:form action="myList/edit" method="POST" modelAttribute="bookRoomForm">
-										  			<form:input path="id" type="hidden" value="${element.id}" />
-										  			
-										  			<input type="submit" class="btn btn-secondary btn-sm" value="bearbeiten">
-										  		</form:form>
+						
+						<p>
+								Room: ${booking.room}
+								<br><br>
+	                            
+	                            Datum: <fmt:formatDate value="${booking.date}" type="date" pattern="dd.MM.yyyy"/>
+								<br><br>
+								
+								Begin: <fmt:formatDate value="${booking.begin}" type="date" pattern="HH:mm"/>
+								<br><br>
+								
+								End: <fmt:formatDate value="${booking.end}" type="date" pattern="HH:mm"/>
+								<br><br><br><br>
+								
+								Users: ${booking.users.size()}
+								<br>
+								
+								<form:form action="edit/addUser" method="POST" modelAttribute="addUser">
+										<form:input path="bookingId" type="hidden" value="${booking.id}" />
+										
+										<form:input path="username" type="text" required="required"/>
+										<input type="submit" value="hinzufügen">
+								</form:form>
+								<br><br>
+							
+								
+								
+								<c:forEach var="user" items="${booking.users}">
+									<form:form action="edit/removeUser" method="POST" modelAttribute="removeUser">
+										<c:if test="${(user.id eq currentUser.id)==false}">
+												<form:input path="bookingId" type="hidden" value="${booking.id}" />
+												<form:input path="userId" type="hidden" value="${user.id}" />
 												
-										  </td>
-										</tr>
-									</c:forEach>
-							</tbody> 
-						</table>
+												${user.firstname} ${user.lastname} (${user.username}) 
+												
+												<input type="submit" value="remove">
+												<br>
+										</c:if>
+									</form:form>
+								</c:forEach>
+								<br><br><br>
+									
+									
+									
+									<form:form action="edit/removeUser" method="POST" modelAttribute="removeUser">
+												<form:input path="bookingId" type="hidden" value="${booking.id}" />
+												<form:input path="userId" type="hidden" value="${currentUser.id}" />
+												<input type="submit" value="Ich möchte diesen Termin verlassen">
+												<br>
+									</form:form>
+								
+								<br><br><br>
+								
+
+						</p>
+						
+						
 					</div>	
 		  	</div>	
 			
@@ -119,15 +145,11 @@
 	</div>
 	
 	
-	
-	
-	<!-- Footer -->
-  <footer class="py-3 bg-dark fixed-bottom">
-    <div class="container">
-      <p class="m-0 text-center text-white">HTW Berlin &copy; Room Finder 2019</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+
+
+
+
+
 
   <!-- Bootstrap core JavaScript -->
   <script src="<c:url value="/" />resources/jquery/jquery.slim.min.js"></script>

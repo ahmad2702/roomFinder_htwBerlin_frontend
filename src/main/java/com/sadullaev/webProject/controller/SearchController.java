@@ -4,29 +4,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class PageController {
+public class SearchController {
 	
-	@RequestMapping("/")
-	String index() {
-		return "home";
-	}
-	
+	/**
+	 * OPen Main Search Page
+	 * @return page
+	 */
 	@RequestMapping("/search")
 	String search() {
 		return "searchpage";
 	}
-	
-	@RequestMapping("/myList")
-	String liste() {
-		
-		return "my_list";
-	}
-	
-	@RequestMapping("/account")
-	String account() {
-		
-		return "profile";
-	}
-	
 	
 }

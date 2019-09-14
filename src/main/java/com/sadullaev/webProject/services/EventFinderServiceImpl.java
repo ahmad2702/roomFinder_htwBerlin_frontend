@@ -9,14 +9,21 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Service;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.sadullaev.webProject.model.Event;
+import com.sadullaev.webProject.form.events.Event;
 import com.sadullaev.webProject.propertiesLoader.BackendConnection;
 import com.google.gson.reflect.TypeToken;
 
+@Service
 public class EventFinderServiceImpl implements EventFinderServiceDAO{
 
+	/**
+	 * Getter function for url
+	 * @return url
+	 */
 	private static String getUrl() {
 		String url = "http://"
 				+ BackendConnection.getHost()
@@ -25,8 +32,15 @@ public class EventFinderServiceImpl implements EventFinderServiceDAO{
 		return url;
 	}
 	
-	@Override
-	public List<Event> getEvents(String title, String date, String lecturer, String number){
+	/**
+	 * Function for send the requests to backend
+	 * @param title
+	 * @param date
+	 * @param lecturer
+	 * @param number
+	 * @return response
+	 */
+	public String sendRequestAtBackend(String title, String date, String lecturer, String number) {
 		String url = getUrl() + "/events/finder";
 		
 		String json = "";
@@ -43,7 +57,6 @@ public class EventFinderServiceImpl implements EventFinderServiceDAO{
 			System.out.println("URL kann nicht geoffnet werden.");
 		}
 	    
-	    
 	    try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))) 
 	    {
 	        json = reader.lines().collect(Collectors.joining("\n"));
@@ -51,15 +64,20 @@ public class EventFinderServiceImpl implements EventFinderServiceDAO{
 			System.out.println("JSON kann nicht abgelesen werden.");
 		} 
 		
-		//System.out.println(json);
+		return json;
+	}
+	
+	/**
+	 * Getter function for event from backend
+	 * @return event list
+	 */
+	@Override
+	public List<Event> getEvents(String title, String date, String lecturer, String number){
+		String json = sendRequestAtBackend(title, date, lecturer, number);
 		
 	    Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
 		List<Event> events = gson.fromJson(json, new TypeToken<List<Event>>(){}.getType());
-		//System.out.println("Size: " + events.size());
 		return events;
 	}
-	
 
-
-	
 }
