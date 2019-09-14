@@ -9,8 +9,8 @@ CREATE TABLE IF NOT EXISTS `booking_list`(`id` INT NOT NULL AUTO_INCREMENT,`room
 CREATE TABLE IF NOT EXISTS `booking_users_mapping`(`booking_id` INT NOT NULL,`user_id` INT NOT NULL,FOREIGN KEY(booking_id) REFERENCES booking_list(id),FOREIGN KEY(user_id) REFERENCES users(id)) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-# Insert users (pw: http://www.sha1-online.com/): 
-# standard pw: 123456789 
+* Insert users (pw: http://www.sha1-online.com/): 
+* Standard pw: 123456789 
 
 insert into users(firstname, lastname, username,password) values("Alex", "Miller", "s0111001","f7c3bc1d808e04732adf679965ccc34ca7ae3441");
 insert into users(firstname, lastname, username,password) values("Max", "Mueller", "s0111002","f7c3bc1d808e04732adf679965ccc34ca7ae3441");
